@@ -1,0 +1,12 @@
+{
+  "name": "framesmith",
+  "version": "1.0.0",
+  "description": "Framesmith — HTML-native video production studio powered by HyperFrames. Hihnala brand by default, swappable for any brand.",
+  "scripts": {
+    "preflight": "node scripts/preflight.mjs"
+  },
+  "keywords": ["hyperframes", "video", "html", "motion-graphics", "claude-code"],
+  "author": "Markku Hihnala",
+  "license": "MIT",
+  "type": "commonjs"
+}

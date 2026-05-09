@@ -1,0 +1,43 @@
+/* Framesmith — Hihnala Brand Tokens
+   Source of truth: DESIGN.md
+   Replace with your own brand tokens: see BRAND_SETUP.md */
+
+/* ── Foundation ── */
+--hihnala-abyss:   #040408;   /* deepest bg, luxury screens */
+--hihnala-bg:      #06060A;   /* primary page background (Deep Void) */
+--hihnala-carbon:  #0C0C11;   /* alternate section bg */
+--hihnala-surface: #141419;   /* cards, elevated surfaces (Graphite) */
+--hihnala-slate:   #1C1C23;   /* hover states, tertiary surfaces */
+
+/* ── Text hierarchy ── */
+--hihnala-text:    #F5F5F7;   /* headings, high-emphasis (Soft White) */
+--hihnala-silver:  #CDCDD4;   /* subheadings, key body, anchor lines */
+--hihnala-pewter:  #8E8E99;   /* body paragraphs */
+--hihnala-ash:     #5A5A66;   /* meta text, labels, timestamps */
+
+/* ── Primary accent — Ember (action, CTA) ── */
+--hihnala-ember:        #FF6A1A;
+--hihnala-ember-hover:  #FF8C42;
+--hihnala-ember-active: #E55300;
+--hihnala-ember-glow:   rgba(255, 106, 26, 0.35);
+
+/* ── Secondary accent — Steel (systems, infrastructure) ── */
+--hihnala-steel:      #4F6D8A;
+--hihnala-steel-deep: #3E566E;
+--hihnala-steel-pale: #6F8FAE;
+--hihnala-steel-glow: rgba(79, 109, 138, 0.35);
+
+/* ── Secondary accent — Copper (structure, labels — micro only) ── */
+--hihnala-copper:     #D4892F;
+--hihnala-copper-dim: #9C6424;
+--hihnala-copper-line: rgba(212, 137, 47, 0.25);
+
+/* ── Borders ── */
+--hihnala-border-quiet: rgba(255, 255, 255, 0.06);
+--hihnala-divider-glow: linear-gradient(90deg,
+  transparent 0%,
+  rgba(79, 109, 138, 0.2) 25%,
+  rgba(212, 137, 47, 0.3) 50%,
+  rgba(79, 109, 138, 0.2) 75%,
+  transparent 100%
+);
