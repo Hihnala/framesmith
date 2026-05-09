@@ -3,7 +3,6 @@
 **Default brand: Hihnala**
 *Quiet Power. Editorial Authority. Physical Depth.*
 
-Source of truth: `/Users/markku/Documents/Hihnala/Docs-v3/Hihnala Brand System.md`
 To swap to a different brand, see `BRAND_SETUP.md`.
 
 ---
