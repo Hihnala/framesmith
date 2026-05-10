@@ -23,7 +23,7 @@ Three accent families. No fourth. No decorative colors.
 ### Foundation — 80–90% of every frame
 
 | Token | Hex | Role |
-| --- | --- | --- |
+|-------|-----|------|
 | `--hihnala-abyss` | `#040408` | Deepest background, luxury screens |
 | `--hihnala-bg` | `#06060A` | Primary canvas (Deep Void) |
 | `--hihnala-carbon` | `#0C0C11` | Alternate section background |
@@ -35,7 +35,7 @@ Section alternation: Deep Void and Carbon only. Cards always use Graphite. Slate
 ### Text hierarchy
 
 | Token | Hex | Role |
-| --- | --- | --- |
+|-------|-----|------|
 | `--hihnala-text` | `#F5F5F7` | H1–H4 headings, high-emphasis (Soft White) |
 | `--hihnala-silver` | `#CDCDD4` | Subheadings, anchor lines, serif italic |
 | `--hihnala-pewter` | `#8E8E99` | Body paragraphs |
@@ -46,7 +46,7 @@ Section labels (uppercase): Copper `#D4892F`. Inline emphasis (rare): Ember `#FF
 ### Ember — action, CTA, commitment
 
 | Token | Hex | Role |
-| --- | --- | --- |
+|-------|-----|------|
 | `--hihnala-ember` | `#FF6A1A` | Primary CTA, key emphasis |
 | `--hihnala-ember-hover` | `#FF8C42` | Hover state |
 | `--hihnala-ember-active` | `#E55300` | Active / pressed state |
@@ -57,7 +57,7 @@ One Ember-dominant element per scene. Ember is a decision — never decoration.
 ### Steel — systems, infrastructure
 
 | Token | Hex | Role |
-| --- | --- | --- |
+|-------|-----|------|
 | `--hihnala-steel` | `#4F6D8A` | System elements, AI accent |
 | `--hihnala-steel-deep` | `#3E566E` | Hover / active |
 | `--hihnala-steel-pale` | `#6F8FAE` | Accent lines, tier labels |
@@ -65,7 +65,7 @@ One Ember-dominant element per scene. Ember is a decision — never decoration.
 ### Copper — structure, hierarchy (micro-accent only)
 
 | Token | Hex | Role |
-| --- | --- | --- |
+|-------|-----|------|
 | `--hihnala-copper` | `#D4892F` | Section labels, step numbers |
 | `--hihnala-copper-dim` | `#9C6424` | Subtle separators |
 
@@ -98,7 +98,7 @@ Never use a hard 1px border edge-to-edge.
 ### Scale
 
 | Level | Size | Weight | Line height | Use |
-| --- | --- | --- | --- | --- |
+|-------|------|--------|-------------|-----|
 | H1 | 56px | 400 | 1.05 | Hero, page titles |
 | H2 | 44px | 400 | 1.10 | Section headings |
 | H3 | 32px | 400 | 1.15 | Sub-section headings |
@@ -135,12 +135,14 @@ Never use a hard 1px border edge-to-edge.
 ### Scene transitions
 
 | Change | Transition | Duration | Ease |
-| --- | --- | --- | --- |
+|--------|-----------|----------|------|
 | Opening | Ember flash (opacity + scale) | 0.4s | `power4.inOut` |
 | Mid-video | Push slide left | 0.35s | `power2.inOut` |
 | Final | Blur crossfade | 0.5s | `sine.inOut` |
 
 Average scene length: ~1.5 seconds. One idea per beat.
+
+For the full motion discipline — Laws, composition model, motion vocabulary, pacing, GSAP recipes, and pre-flight checklist — see `MOTION_PHILOSOPHY.md` at the workspace root.
 
 ---
 
@@ -175,8 +177,8 @@ These are enforced by the delivery checklist and caught by the agent during comp
 2. **No additional accent families** — Ember, Steel, Copper only. No fourth color.
 3. **No Source Serif 4 at weight 700** — always 400.
 4. **No system fonts, Inter, Roboto, Arial** — Source Serif 4 + Plus Jakarta Sans only.
-5. **No ****`transparent`**** keyword in gradients** — use `rgba(6,6,10,0)` for shader compatibility.
-6. **No ****`Math.random()`**** or ****`Date.now()`** — compositions must be deterministic.
+5. **No `transparent` keyword in gradients** — use `rgba(6,6,10,0)` for shader compatibility.
+6. **No `Math.random()` or `Date.now()`** — compositions must be deterministic.
 7. **No flat cards on elevated surfaces** — always double-bezel.
 8. **No hype words in VO or captions** — revolutionary, cutting edge, disruptive, seamless, unleash, leverage, next-gen, game-changer.
 9. **No exit animations** on any scene except the final — transitions handle exits.
@@ -191,18 +193,17 @@ Framesmith is built to be re-branded. The Hihnala system is the default — anyo
 ### What to change
 
 | File | What it contains | Your action |
-| --- | --- | --- |
+|------|-----------------|-------------|
 | `DESIGN.md` | Full brand spec | Replace with your own — same sections, different values |
 | `assets/brand-tokens.css` | CSS custom properties | Replace `--hihnala-` prefix and values |
 | `assets/hihnala-logo.*` | Logo files | Add your own logos |
-
-`MOTION_PHILOSOPHY.md` is brand-neutral and should be kept as-is.
+| `MOTION_PHILOSOPHY.md` | Motion discipline — Hihnala brand layer pre-filled | Adapt the brand layer — see the "For Other Brands" guide at the top of the file |
 
 ### How to write your DESIGN.md
 
 At a minimum, include these sections:
 
-```markdown
+```
 ## Style Prompt
 One paragraph: visual personality, emotional target, what the composition should feel like.
 
@@ -220,7 +221,7 @@ Primary easing curve. Duration bands. What to animate, what not to.
 File paths. Clear space. Glow treatment (if any).
 
 ## What NOT to Do
-5–10 anti-patterns specific to your brand.
+5-10 anti-patterns specific to your brand.
 ```
 
 ### How to update brand-tokens.css
@@ -243,4 +244,4 @@ In both files, update the brand name reference in the "Brand system" section hea
 
 ### Full guide
 
-See [BRAND_SETUP.md](./../BRAND_SETUP.md) at the workspace root for the complete step-by-step.
+See [BRAND_SETUP.md](https://github.com/Hihnala/framesmith/blob/main/BRAND_SETUP.md) at the workspace root for the complete step-by-step.
