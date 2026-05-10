@@ -28,7 +28,7 @@ This checks Node.js, FFmpeg, Chrome (bundled by HyperFrames), and memory. Fix an
 ## Installation
 
 ```bash
-git clone https://github.com/yourusername/framesmith
+git clone https://github.com/Hihnala/framesmith
 cd framesmith
 
 # Install Python dependencies (for video pipeline tools)
