@@ -144,11 +144,11 @@ framesmith/
 
 **Framesmith docs** (in this repo):
 
-- [Getting Started](docs/getting-started.md) — installation, first project, project structure
-- [How It Works](docs/how-it-works.md) — gate system, three workflow levels, production loop
-- [Skills](docs/skills.md) — all sixteen skills with usage guide
-- [Brand System](docs/brand-system.md) — Hihnala brand and how to swap it for your own
-- [Tools](docs/tools.md) — Python and shell tools reference
+- [getting-started.md](./docs/getting-started.md) — installation, first project, project structure
+- [how-it-works.md](./docs/how-it-works.md) — gate system, three workflow levels, production loop
+- [skills.md](./docs/skills.md) — all sixteen skills with usage guide
+- [brand-system.md](./docs/brand-system.md) — Hihnala brand and how to swap it for your own
+- [tools.md](./docs/tools.md) — Python and shell tools reference
 
 **HyperFrames docs** (external):
 
@@ -163,3 +163,5 @@ framesmith/
 MIT — see `LICENSE`. Built by [Markku Hihnala / Hihnala](https://hihnala.com).
 
 [HyperFrames](https://github.com/heygen-com/hyperframes) is built by HeyGen, licensed under Apache 2.0.
+
+Additional inspiration from Nate Herk's [fork](https://github.com/nateherkai/hyperframes-student-kit), and Robonuggets [fork](https://github.com/robonuggets/hyperframes-helper) of HeyGen's repo.
