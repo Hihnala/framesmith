@@ -31,7 +31,7 @@ Framesmith is an AI agent workspace for producing professional videos using Hype
 ## Quick start
 
 ```bash
-git clone https://github.com/yourusername/framesmith
+git clone https://github.com/Hihnala/framesmith
 cd framesmith
 cp .env.example video-projects/.env
 # Add your ElevenLabs API key to video-projects/.env
