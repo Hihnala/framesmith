@@ -6,6 +6,59 @@ Read this before starting any composition. Re-read the Laws before brainstorming
 
 ---
 
+## For Other Brands
+
+This file ships pre-filled with the **Hihnala** brand. The structure — Laws, composition model, motion vocabulary, pacing rules, technical recipes, pre-flight checklist — applies to any brand. The brand layer (colors, fonts, move names, and act assignments) is what you replace.
+
+**What is brand-specific vs universal:**
+
+| Universal (keep as-is) | Brand-specific (replace) |
+| --- | --- |
+| The 10 Laws (concepts) | Color references in the Laws |
+| Pacing discipline (timing values) | Canvas color and accent families |
+| Audio defaults | Font names and text color hierarchy |
+| All technical recipes (§3.8–3.14) | Accent rgba values in recipes §3.2–3.7 |
+| GSAP easing reference | Move names ("Ember pulse," "Amber whip," etc.) |
+| Pre-flight checklist structure | Brand-specific checklist items |
+| The "What Would X Do?" structure | The brand name and color-specific questions |
+
+**Substitution map — replace Hihnala values with your own:**
+
+| Hihnala element | Generic role | Your value |
+| --- | --- | --- |
+| Deep Void `#06060A` | Canvas / darkest background | ***\_***___ |
+| Soft White `#F5F5F7` | Primary text | ***\_***___ |
+| Silver `#CDCDD4` | Secondary text / italic anchor | ***\_***___ |
+| Pewter `#8E8E99` | Body text | ***\_***___ |
+| Ash `#5A5A66` | Meta / label text | ***\_***___ |
+| Ember `#FF6A1A` | Primary accent — action, CTA, decisive moments | ***\_***___ |
+| Steel `#4F6D8A` | Secondary accent — context, infrastructure, systems | ***\_***___ |
+| Copper `#D4892F` | Tertiary accent — structure, labels, step markers | ***\_***___ |
+| Ember pulse | Primary accent radial glow event | ***\_***___ |
+| Steel trace | Secondary accent path animation | ***\_***___ |
+| Copper mark | Tertiary accent structural marker | ***\_***___ |
+| Amber whip | Primary-accent-tinted transition streak | ***\_***___ |
+| Source Serif 4 (weight 400) | Heading font | ***\_***___ |
+| Plus Jakarta Sans | Body / UI font | ***\_***___ |
+
+**Sections that need edits when adapting:**
+
+- **§0 Laws:** replace `#06060A`, "ember," "steel," "copper," "amber-tinted" with your equivalents
+- **§1 Composition Model:** replace the Dominant accent column with your accent families and their storytelling roles
+- **§2.1 Backgrounds:** replace rgba values for the ambient radial, particle drift color, and mark colors
+- **§2.2 Type:** replace font names and all hex values in the text hierarchy table
+- **§2.3 Color Story:** replace entirely with your palette and meaning assignments
+- **§2.4 Motion Vocabulary:** rename "Ember pulse," "Steel trace," "Copper mark," "Amber whip," "Void breathe" to match your brand; replace rgba values in GSAP recipes
+- **§2.5 Transitions:** rename "Ember flash" and "Amber whip"; adjust gradient colors in the whip recipe
+- **§3.2–3.7 Recipes:** replace all hex and rgba values with your brand tokens
+- **§4 Pre-flight checklist:** replace Hihnala-specific items (ember moment count, serif weight, copper marks) with your brand equivalents
+- **§5 "What Would X Do?":** replace "Hihnala" with your brand name; rewrite questions 3–7 for your color and type system
+- **§8 TL;DR:** rewrite for your brand voice and accent names
+
+Also update `BRAND_SETUP.md` to reflect that this file requires adaptation (the default entry says "keep as-is").
+
+---
+
 ## 0 · The 10 Laws
 
 1. **One idea per beat. Cut fast.** Each scene lands one concept and moves on. If a scene says two things, split it. Target 1.0-2.0 seconds per beat in the mid-section.
@@ -37,7 +90,7 @@ Every Hihnala video follows a three-act structure regardless of length.
 **60-second format:**
 
 | Time | Act | What's on screen | Dominant accent |
-|------|-----|-----------------|-----------------|
+| --- | --- | --- | --- |
 | 0-3s | Opening | Void. Ambient ember radial forms. Serif type reveals word by word. | None (void establishes) |
 | 3-15s | Problem / Context | Infrastructure described. Steel traces activate nodes. | Steel |
 | 15-45s | Solution (three beats) | Each beat: Copper marks appear first (structure). Ember pulse fires at resolution. | Copper → Ember |
@@ -47,7 +100,7 @@ Every Hihnala video follows a three-act structure regardless of length.
 **30-second format:**
 
 | Time | Act | Dominant accent |
-|------|-----|-----------------|
+| --- | --- | --- |
 | 0-5s | Hook (one problem sentence, kinetic serif) | None |
 | 5-22s | Three solution beats (6 seconds each) | Steel → Copper → Ember |
 | 22-30s | CTA hold | Ember |
@@ -55,7 +108,7 @@ Every Hihnala video follows a three-act structure regardless of length.
 **15-second format:**
 
 | Time | Act |
-|------|-----|
+| --- | --- |
 | 0-4s | Problem hook |
 | 4-11s | One solution point |
 | 11-15s | CTA hold (minimum 4 seconds) |
@@ -75,8 +128,8 @@ The rule of three appears naturally in the solution act. Don't force it elsewher
 ### 2.1 Backgrounds (in priority order)
 
 | # | Background | Where it lives | How to build |
-|---|-----------|---------------|--------------|
-| 1 | **Pure void** | Always | `body { background: #06060A }`. The default. |
+| --- | --- | --- | --- |
+| 1 | **Pure void** | Always | `body { background: ``#06060A`` }`. The default. |
 | 2 | **Ambient ember radial** | Hero frames, CTA section, impact beats | `radial-gradient(ellipse at 50% 60%, rgba(255,106,26,0.08) 0%, transparent 60%)`. Subtle. Breathes. |
 | 3 | **Vignette** | Every scene, always on top | `radial-gradient(ellipse at center, transparent 30%, #040408 95%)`. Non-negotiable. |
 | 4 | **Particle drift** | All scenes (barely visible) | 15-25 absolute `<div>` elements, 1-2px, white at 10-20% opacity, GSAP `sine.inOut yoyo repeat`, slow (4-8s per cycle), stagger from random. |
@@ -104,7 +157,7 @@ Three typographic voices:
 **Text color hierarchy in compositions:**
 
 | Role | Color | Hex |
-|------|-------|-----|
+| --- | --- | --- |
 | Primary statements | Soft White | `#F5F5F7` |
 | Substatements, supporting | Silver | `#CDCDD4` |
 | Body, descriptions | Pewter | `#8E8E99` |
@@ -123,7 +176,7 @@ Hihnala does not use chrome gradients on type. Flat text colors from the hierarc
 ### 2.3 Color Story
 
 | Color | Hex | Meaning | Where |
-|-------|-----|---------|-------|
+| --- | --- | --- | --- |
 | **Deep Void** | `#06060A` | Canvas / silence | Always dominant |
 | **Soft White** | `#F5F5F7` | Primary voice | Headings, key statements |
 | **Silver** | `#CDCDD4` | Supporting voice, warmth | Substatements, italic anchor lines |
@@ -139,7 +192,7 @@ Hihnala does not use chrome gradients on type. Flat text colors from the hierarc
 The moves you'll use across every Hihnala composition:
 
 | Move | What it does | GSAP recipe |
-|------|-------------|-------------|
+| --- | --- | --- |
 | **Ember pulse** | A warm radial glow expands at a decisive moment, then settles | `tl.to(ember, { '--glow-opacity': 0.12, duration: 0.4, ease: 'power2.out' }).to(ember, { '--glow-opacity': 0.07, duration: 1.2, ease: 'sine.inOut' })` |
 | **Steel trace** | Energy travels along a path to activate a system node | SVG `stroke-dashoffset` from `length` to `0`, `power2.inOut`, then `tl.to(node, { boxShadow: '0 0 24px rgba(79,109,138,0.5)' })` |
 | **Copper mark** | Registration marks appear at structural moments | `gsap.from('.copper-mark', { opacity: 0, scale: 0.6, duration: 0.3, ease: 'back.out(1.4)', stagger: 0.06 })` |
@@ -151,7 +204,7 @@ The moves you'll use across every Hihnala composition:
 | **Card materialize** | Double-bezel card rises from 0.95 scale with ember glow | `tl.from(card, { scale: 0.95, opacity: 0, duration: 0.6, ease: 'power2.out' }).from(glow, { opacity: 0, duration: 0.8 }, '<0.1')` |
 | **Glass slide** | Glass panel enters from below, blur activates | `tl.from(panel, { y: 60, opacity: 0, duration: 0.8, ease: 'power3.out' })` with `backdrop-filter` already set |
 | **Ember outro** | CTA section: ember radial expands, settles, holds | Animate `--glow-opacity` 0 → 0.14, settle to 0.09, then hold for 4+ seconds |
-| **Color recolor (no cut)** | Same composition, accent shifts via CSS variables | `tl.to(':root', { '--accent': '#4F6D8A', duration: 0.6, ease: 'power2.inOut' })` |
+| **Color recolor (no cut)** | Same composition, accent shifts via CSS variables | `tl.to(':root', { '--accent': '``#4F6D8A``', duration: 0.6, ease: 'power2.inOut' })` |
 | **Energy pulse along path** | SVG edge "activates" a network node | `stroke-dasharray + stroke-dashoffset` animated 1 → 0. Node lights via `boxShadow` tween at path end. |
 | **Hold shimmer** | Subtle glint passes over held logo/type | `npx hyperframes add shimmer-sweep`, set `data-interval` |
 
@@ -160,7 +213,7 @@ The moves you'll use across every Hihnala composition:
 ### 2.5 Transition Catalog
 
 | Transition | When to use | Approach |
-|-----------|-------------|----------|
+| --- | --- | --- |
 | **Amber whip** | Default cut between scenes | Custom div + GSAP, or `npx hyperframes add whip-pan` |
 | **Ember flash** | Act 1 → Act 2, decisive moments | White-to-ember overlay: `opacity 0 → 0.4 → 0`, 0.5s |
 | **Blur crossfade** | Brand reveal, CTA landing | Two layered scenes, opacity cross with `filter: blur(8px)` on exit |
@@ -185,7 +238,7 @@ The moves you'll use across every Hihnala composition:
 ### 2.7 Audio Defaults
 
 | Layer | Volume | Role |
-|-------|--------|------|
+| --- | --- | --- |
 | Voiceover | `1.0` | Primary, drives timing |
 | Underscore (warm ambient pad) | `0.12-0.15` | Barely present. Sets mood. |
 | SFX (settle clicks, soft whooshes) | `0.18` | Tails may bleed into next beat |
@@ -615,8 +668,8 @@ If you can't name the matching tween in a comment, the seam isn't designed.
 - [ ] **At least one callback** — a visual element that returns (Copper marks reappearing, the brand mark appearing mid-piece and again at outro)
 - [ ] **CTA card holds 4+ seconds** — no exceptions
 - [ ] **Visual verification done** — extracted frames, confirmed: no text overflow, no broken transitions, no scene landing mid-word
-- [ ] **Every sub-composition timeline ends with `tl.to({}, { duration: SLOT_DURATION }, 0)`** (Law #10)
-- [ ] **All tween end-times snap to multiples of `1/fps`** — at 30fps: 0.0333, 0.0667, 0.1...
+- [ ] **Every sub-composition timeline ends with ****`tl.to({}, { duration: SLOT_DURATION }, 0)`** (Law #10)
+- [ ] **All tween end-times snap to multiples of ****`1/fps`** — at 30fps: 0.0333, 0.0667, 0.1...
 - [ ] **Ran the timeline-duration diagnostic** and confirmed no `timeline.duration() < data-duration` gaps
 
 ---
@@ -663,7 +716,7 @@ Before shipping any motion piece:
 **Easings by purpose:**
 
 | Purpose | Ease | Typical duration |
-|---------|------|-----------------|
+| --- | --- | --- |
 | Word reveal | `expo.out` | 0.20-0.35s |
 | Element enter | `power3.out` | 0.3-0.6s |
 | Element exit | `power2.in` | 0.2-0.35s |
@@ -683,7 +736,7 @@ Before shipping any motion piece:
 - Particle drift (stagger from random): `each: 0.5-0.8`
 - Caption lines: `0.08-0.12s` explicit delays
 
-**Don't use `gsap.defaults()`.** Every tween declares its ease and duration explicitly. Inheritance bugs are harder to find than verbose tweens.
+**Don't use ****`gsap.defaults()`****.** Every tween declares its ease and duration explicitly. Inheritance bugs are harder to find than verbose tweens.
 
 **Timeline skeleton:**
 
