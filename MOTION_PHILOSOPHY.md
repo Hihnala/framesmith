@@ -2,582 +2,692 @@
 
 *Quiet Power in Motion. Every frame earns its place.*
 
-Read this before starting any composition. Re-read the Laws before brainstorming any new scene.
+Read this before starting any composition. Re-read the Laws and the overlay system before brainstorming any new scene.
 
 ---
 
 ## For Other Brands
 
-This file ships pre-filled with the **Hihnala** brand. The structure — Laws, composition model, motion vocabulary, pacing rules, technical recipes, pre-flight checklist — applies to any brand. The brand layer (colors, fonts, move names, and act assignments) is what you replace.
-
-**What is brand-specific vs universal:**
+This file ships pre-filled with the **Hihnala** brand. The structure — Laws, overlay system, pacing rules, technical recipes, pre-flight checklist — applies to any brand. The brand layer (colors, fonts, move names, act assignments) is what you replace.
 
 | Universal (keep as-is) | Brand-specific (replace) |
 | --- | --- |
 | The 10 Laws (concepts) | Color references in the Laws |
+| Overlay system types and pacing | Overlay card colors, fonts, accent hex values |
 | Pacing discipline (timing values) | Canvas color and accent families |
-| Audio defaults | Font names and text color hierarchy |
-| All technical recipes (§3.8–3.14) | Accent rgba values in recipes §3.2–3.7 |
+| All technical recipes (§4.x) | Accent rgba values in recipes |
 | GSAP easing reference | Move names ("Ember pulse," "Amber whip," etc.) |
+| Sub-comp gotchas (§5) | None — these are framework rules |
 | Pre-flight checklist structure | Brand-specific checklist items |
-| The "What Would X Do?" structure | The brand name and color-specific questions |
 
-**Substitution map — replace Hihnala values with your own:**
+**Substitution map:**
 
 | Hihnala element | Generic role | Your value |
 | --- | --- | --- |
 | Deep Void `#06060A` | Canvas / darkest background | ***\_***___ |
 | Soft White `#F5F5F7` | Primary text | ***\_***___ |
 | Silver `#CDCDD4` | Secondary text / italic anchor | ***\_***___ |
-| Pewter `#8E8E99` | Body text | ***\_***___ |
-| Ash `#5A5A66` | Meta / label text | ***\_***___ |
 | Ember `#FF6A1A` | Primary accent — action, CTA, decisive moments | ***\_***___ |
-| Steel `#4F6D8A` | Secondary accent — context, infrastructure, systems | ***\_***___ |
-| Copper `#D4892F` | Tertiary accent — structure, labels, step markers | ***\_***___ |
-| Ember pulse | Primary accent radial glow event | ***\_***___ |
-| Steel trace | Secondary accent path animation | ***\_***___ |
-| Copper mark | Tertiary accent structural marker | ***\_***___ |
-| Amber whip | Primary-accent-tinted transition streak | ***\_***___ |
-| Source Serif 4 (weight 400) | Heading font | ***\_***___ |
-| Plus Jakarta Sans | Body / UI font | ***\_***___ |
+| Steel `#4F6D8A` | Secondary accent — context, infrastructure | ***\_***___ |
+| Copper `#D4892F` | Tertiary accent — structure, labels | ***\_***___ |
+| Source Serif 4 (weight 400) | Heading / authority font | ***\_***___ |
+| Plus Jakarta Sans | Body / UI / caption font | ***\_***___ |
 
-**Sections that need edits when adapting:**
-
-- **§0 Laws:** replace `#06060A`, "ember," "steel," "copper," "amber-tinted" with your equivalents
-- **§1 Composition Model:** replace the Dominant accent column with your accent families and their storytelling roles
-- **§2.1 Backgrounds:** replace rgba values for the ambient radial, particle drift color, and mark colors
-- **§2.2 Type:** replace font names and all hex values in the text hierarchy table
-- **§2.3 Color Story:** replace entirely with your palette and meaning assignments
-- **§2.4 Motion Vocabulary:** rename "Ember pulse," "Steel trace," "Copper mark," "Amber whip," "Void breathe" to match your brand; replace rgba values in GSAP recipes
-- **§2.5 Transitions:** rename "Ember flash" and "Amber whip"; adjust gradient colors in the whip recipe
-- **§3.2–3.7 Recipes:** replace all hex and rgba values with your brand tokens
-- **§4 Pre-flight checklist:** replace Hihnala-specific items (ember moment count, serif weight, copper marks) with your brand equivalents
-- **§5 "What Would X Do?":** replace "Hihnala" with your brand name; rewrite questions 3–7 for your color and type system
-- **§8 TL;DR:** rewrite for your brand voice and accent names
-
-Also update `BRAND_SETUP.md` to reflect that this file requires adaptation (the default entry says "keep as-is").
+Also update `BRAND_SETUP.md` when adapting this file.
 
 ---
 
 ## 0 · The 10 Laws
 
-1. **One idea per beat. Cut fast.** Each scene lands one concept and moves on. If a scene says two things, split it. Target 1.0-2.0 seconds per beat in the mid-section.
+1. **One idea per overlay or beat. Cut fast.** Each card or kinetic text element carries ONE concept. Each full-screen scene lands ONE word or claim and moves on. If a scene or card says two things, split it.
 
-2. **The void is the canvas.** Deep Void (`#06060A`) or Abyss (`#040408`) fills 80-90% of every frame. Negative space is the design. Color earns its place by carrying meaning.
+2. **The canvas depends on the beat type.** For full-screen composition beats (intro, CTA, chapter transition): Deep Void (`#06060A`) fills 80–90% of the frame and negative space is the design. For overlay beats on white-background footage: the speaker and the footage are the canvas; the dark glass card carries the brand.
 
-3. **Light signals brand.** Ember glow means decision. Steel trace means infrastructure activation. Copper marks mean structure. Nothing glows without a reason assigned to it.
+3. **Light and contrast signal brand.** On full-screen beats: Ember glow means decision, Steel trace means infrastructure, Copper marks mean structure. On overlay beats: the dark card is the signal — it brings the Hihnala palette into a bright-background context. Nothing appears without a reason.
 
-4. **The frame breathes.** Even "still" frames have ambient motion: particle drift, vignette pulse, a slow ember radial shift. Static = death.
+4. **The frame must live.** Full-screen still frames have ambient motion: particle drift, vignette pulse, ember radial shift. Overlay beats keep the speaker as the live element — cards slide in cleanly and hold without restlessness.
 
-5. **Motion blur covers every cut.** Every transition uses directional blur or a streak element. Hard cuts feel cheap. Amber-tinted whip streaks on energy beats. Blur crossfades on brand reveals.
+5. **Overlay cards enter with intent, exit during silence.** Entry: crisp, fast (0.4–0.7s), directional. Exit: during a natural spoken pause, never competing with what is being said. A card that exits while the speaker is mid-sentence loses the viewer.
 
-6. **Serif authority.** Source Serif 4 at weight 400 is the compositional voice. It can scale to screen-fill. It can reveal word by word. It never goes bold. Authority comes from scale and contrast, not thickness.
+6. **Serif authority at readable scale.** Source Serif 4 at weight 400 is the compositional voice. In video: minimum 48px for headings, minimum 52px for lower third names, minimum 64px for pull quotes. Authority comes from scale and contrast, not thickness. Never bold.
 
-7. **One dominant color per scene.** Follow the psychological order: Steel (infrastructure) → Copper (structure) → Ember (decision). Never invert it within a piece. Mixing Ember and Steel equally in one scene dissolves both.
+7. **One dominant accent per beat.** Follow the psychological order: Steel (infrastructure) → Copper (structure) → Ember (decision). Never invert it within a piece. On overlay cards: one accent color per card. The Ember underline on a stat callout and a Steel label on the same card is mixing equals — pick one.
 
-8. **Hold the hero.** Brand reveals get 1.5-2 seconds of stillness. Final CTA holds 4-6 seconds. Speed earns silence. The outro is the longest single shot in the piece.
+8. **Hold the moments that matter.** Lower thirds: 4–5 seconds. Stat callouts: match spoken duration, minimum 2.5s. Pull quotes: spoken duration + 1s. Final CTA: 5+ seconds of stillness. Speed earns the right to hold.
 
-9. **One unifying texture across everything.** The Hihnala texture: deep void background + ambient ember radial at the composition's center of gravity + slow particle drift. Present in every scene, even when nearly invisible.
+9. **Captions always.** Word-by-word captions are the highest single retention lever in talking-head video. They run continuously and are never turned off for a cleaner look. Viewers read before they listen.
 
-10. **Timelines must fill their slots.** HyperFrames hides a sub-composition the moment `timeline.duration()` is shorter than `data-duration`, producing a black frame flash. Every GSAP timeline ends with `tl.to({}, { duration: SLOT_DURATION }, 0)` as a no-op anchor. Non-negotiable.
-
----
-
-## 1 · The Hihnala Composition Model
-
-Every Hihnala video follows a three-act structure regardless of length.
-
-**60-second format:**
-
-| Time | Act | What's on screen | Dominant accent |
-| --- | --- | --- | --- |
-| 0-3s | Opening | Void. Ambient ember radial forms. Serif type reveals word by word. | None (void establishes) |
-| 3-15s | Problem / Context | Infrastructure described. Steel traces activate nodes. | Steel |
-| 15-45s | Solution (three beats) | Each beat: Copper marks appear first (structure). Ember pulse fires at resolution. | Copper → Ember |
-| 45-55s | Outcome | Single serif statement at scale. Ember stage expands. | Ember |
-| 55-60s | CTA hold | Brand mark. Contact or URL. Stillness. | Ember (held) |
-
-**30-second format:**
-
-| Time | Act | Dominant accent |
-| --- | --- | --- |
-| 0-5s | Hook (one problem sentence, kinetic serif) | None |
-| 5-22s | Three solution beats (6 seconds each) | Steel → Copper → Ember |
-| 22-30s | CTA hold | Ember |
-
-**15-second format:**
-
-| Time | Act |
-| --- | --- |
-| 0-4s | Problem hook |
-| 4-11s | One solution point |
-| 11-15s | CTA hold (minimum 4 seconds) |
-
-**Color assignment by act:**
-- Opening: void dominates, accent barely present
-- Problem/context: Steel (infrastructure, things that exist)
-- Solution beats: Copper marks the structure, Ember fires at the resolution
-- CTA: Ember only
-
-The rule of three appears naturally in the solution act. Don't force it elsewhere.
+10. **Timelines must fill their slots.** HyperFrames hides a sub-composition the moment `timeline.duration()` falls short of `data-duration` — producing a black frame flash. Every GSAP timeline ends with `tl.to({}, { duration: SLOT_DURATION }, 0)` as a no-op anchor. Non-negotiable.
 
 ---
 
-## 2 · The Visual Vocabulary
+## 1 · The Hihnala Video Model
 
-### 2.1 Backgrounds (in priority order)
+Hihnala videos are talking-head shots on a white background. The speaker carries the authority. The overlay system carries the brand. The structure below applies to a 4–8 minute YouTube video; scale down for shorter formats.
 
-| # | Background | Where it lives | How to build |
+### Act structure
+
+| Act | Duration | What happens | Overlay types active |
 | --- | --- | --- | --- |
-| 1 | **Pure void** | Always | `body { background: ``#06060A`` }`. The default. |
-| 2 | **Ambient ember radial** | Hero frames, CTA section, impact beats | `radial-gradient(ellipse at 50% 60%, rgba(255,106,26,0.08) 0%, transparent 60%)`. Subtle. Breathes. |
-| 3 | **Vignette** | Every scene, always on top | `radial-gradient(ellipse at center, transparent 30%, #040408 95%)`. Non-negotiable. |
-| 4 | **Particle drift** | All scenes (barely visible) | 15-25 absolute `<div>` elements, 1-2px, white at 10-20% opacity, GSAP `sine.inOut yoyo repeat`, slow (4-8s per cycle), stagger from random. |
-| 5 | **Steel grid (sparse)** | Infrastructure / system beats | Two-axis repeating-linear-gradient at Steel (`rgba(79,109,138,0.06)`), 80px spacing. Never rotated. |
-| 6 | **Copper marks** | Structure beats, step reveals | SVG `+` crosshair marks at grid intersections in Copper (`#D4892F` at 40% opacity). Fade in as structure establishes. |
-| 7 | **Glass card surface** | Product UI beats, data panels | 4-stop diagonal gradient + `backdrop-filter: blur(14px) saturate(1.12)` + inner highlight. See `DESIGN.md`. |
-| 8 | **Ember stage** | CTA, decisive hero moments | Concentrated `radial-gradient` at center, `rgba(255,106,26,0.12)` at peak. Animate opacity 0 → 0.12 → 0.08 (settle). |
-| 9 | **Film grain** | Every scene | `npx hyperframes add grain-overlay` or pure CSS three-radial dot pattern. Subtle. Always present. |
+| **Cold open / hook** | 0–30s | Speaker opens with a provocation or claim. No overlays yet — let the face land first. Captions always active. | Captions only |
+| **Lower third** | 0:30–1:00 | Speaker ID card appears after the hook lands. Slides in, holds 4–5s, exits before first main point. | Lower third |
+| **Body — point 1** | 1:00–3:00 | Captions + stat callouts when numbers are spoken. Pull quote for the key claim. | Captions, Stat, Pull quote |
+| **Body — point 2** | 3:00–5:00 | Chapter marker at the transition. Same overlay rotation. | Chapter marker, then Captions, Stat |
+| **Body — point 3** | 5:00–7:00 | Chapter marker. One pull quote for the most shareable insight. | Chapter marker, Pull quote |
+| **CTA / close** | 7:00–end | Full-screen composition beat (dark void). Ember CTA card. Speaker close VO underneath or before. | Full-screen composition |
 
-No iridescent backgrounds. No conic gradients. No full-screen warm washes.
+### The overlay rotation rule
 
-### 2.2 Type System
+Within any body section:
+1. Captions run continuously
+2. Stat callout fires on a spoken number (1 per major point)
+3. Pull quote fires on the key claim (1 per section)
+4. Never two non-caption overlays simultaneously
 
-Hihnala uses two fonts across all compositions. No exceptions.
+### Shorter formats
 
-**Headings:** Source Serif 4 (Google Fonts), weight 400, optical size axis active.
-**Body / UI:** Plus Jakarta Sans (Google Fonts), weight 400 regular / 500 medium for labels.
+| Format | Hook | Body | CTA |
+| --- | --- | --- | --- |
+| 60s YouTube Short | 0–8s (no lower third) | 8–50s (captions + 1 stat max) | 50–60s (1 pull quote as CTA) |
+| 3-min explainer | 0–20s | 20s–2:40 (2 points, 1 stat each) | 2:40–3:00 (full-screen or pull quote) |
 
-Three typographic voices:
+### Color assignment by act
 
-- **Serif regular** — all headline beats, step titles, compositional anchors
-- **Serif italic** — closing statements, pull quotes, brand tagline. Always Silver (`#CDCDD4`).
-- **Sans** — body copy, UI labels, captions, meta text
+- Hook: no overlays, captions only
+- Body/infrastructure points: Steel accents in stats, Copper labels
+- Body / resolution moments: Ember underlines stats, Ember emphasizes words in captions
+- CTA: Ember dominant
 
-**Text color hierarchy in compositions:**
+---
 
-| Role | Color | Hex |
+## 2 · The Overlay Vocabulary
+
+### 2.1 Overlay types at a glance
+
+| Type | When it fires | Key constraint |
 | --- | --- | --- |
-| Primary statements | Soft White | `#F5F5F7` |
-| Substatements, supporting | Silver | `#CDCDD4` |
-| Body, descriptions | Pewter | `#8E8E99` |
-| Labels, meta | Ash | `#5A5A66` |
-| Section labels (uppercase) | Copper | `#D4892F` |
-| CTA emphasis | Ember | `#FF6A1A` |
+| **Lower third** | 0:30–1:00, once per video | Must exit before first main argument |
+| **Stat callout** | When a number/metric is spoken | One per major point, right or center, never on speaker's face |
+| **Pull quote** | On the most shareable claim in a section | One per section, left-anchored or centered |
+| **Chapter marker** | Between major topics | Brief (2.5–3s), centered, pill-shaped |
+| **Kinetic captions** | Always | Never off. Word-by-word. Bottom-centered. |
 
-Hihnala does not use chrome gradients on type. Flat text colors from the hierarchy above. The brand signal comes from the font's authority at scale, not from metallic effects.
-
-**Kinetic type in video:**
-- Word-by-word reveals hit harder than character-by-character
-- Hero statements can scale to 4-6× their base size as the camera passes through
-- Use `clamp()` for base sizes, animate via `scale` — never change `font-size` mid-tween
-- Serif italic anchor lines at the close of a beat, in Silver, weight 400
-
-### 2.3 Color Story
-
-| Color | Hex | Meaning | Where |
-| --- | --- | --- | --- |
-| **Deep Void** | `#06060A` | Canvas / silence | Always dominant |
-| **Soft White** | `#F5F5F7` | Primary voice | Headings, key statements |
-| **Silver** | `#CDCDD4` | Supporting voice, warmth | Substatements, italic anchor lines |
-| **Pewter** | `#8E8E99` | Background voice | Body copy, descriptions |
-| **Ember Orange** | `#FF6A1A` | Decision / action | One per beat, at the decisive moment |
-| **Strategic Steel** | `#4F6D8A` | Infrastructure / systems | Context beats, network traces |
-| **Structural Copper** | `#D4892F` | Structure / labels | Step markers, grid registration |
-
-**Discipline:** assign a color before placing it. Ask what role it plays in this beat. If the answer is "it looks nice," remove it.
-
-### 2.4 Motion Vocabulary
-
-The moves you'll use across every Hihnala composition:
+### 2.2 Motion vocabulary for overlays
 
 | Move | What it does | GSAP recipe |
 | --- | --- | --- |
-| **Ember pulse** | A warm radial glow expands at a decisive moment, then settles | `tl.to(ember, { '--glow-opacity': 0.12, duration: 0.4, ease: 'power2.out' }).to(ember, { '--glow-opacity': 0.07, duration: 1.2, ease: 'sine.inOut' })` |
-| **Steel trace** | Energy travels along a path to activate a system node | SVG `stroke-dashoffset` from `length` to `0`, `power2.inOut`, then `tl.to(node, { boxShadow: '0 0 24px rgba(79,109,138,0.5)' })` |
-| **Copper mark** | Registration marks appear at structural moments | `gsap.from('.copper-mark', { opacity: 0, scale: 0.6, duration: 0.3, ease: 'back.out(1.4)', stagger: 0.06 })` |
-| **Serif scale** | Source Serif 4 grows 1× → 4-6×, camera passes through | `tl.fromTo(text, { scale: 1, opacity: 1 }, { scale: 5, opacity: 0, duration: 1.2, ease: 'power2.in' })` |
-| **Word cascade** | Words reveal with slight upward motion and scale | `tl.from('.word', { y: 24, opacity: 0, scale: 0.92, duration: 0.5, ease: 'power3.out', stagger: 0.3 })` |
-| **Void breathe** | Vignette opacity cycles to keep still frames alive | `gsap.to(vignette, { opacity: 0.85, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' })` |
-| **Amber whip** | Ember-tinted light streak masks the cut | `gsap.fromTo(streak, { xPercent: -150 }, { xPercent: 250, duration: 0.4, ease: 'power3.in' })` — fire at the cut |
-| **Particle drift** | Slow ambient motion in the void | `gsap.to(particles, { y: '-=12', duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', stagger: { each: 0.6, from: 'random' } })` |
-| **Card materialize** | Double-bezel card rises from 0.95 scale with ember glow | `tl.from(card, { scale: 0.95, opacity: 0, duration: 0.6, ease: 'power2.out' }).from(glow, { opacity: 0, duration: 0.8 }, '<0.1')` |
-| **Glass slide** | Glass panel enters from below, blur activates | `tl.from(panel, { y: 60, opacity: 0, duration: 0.8, ease: 'power3.out' })` with `backdrop-filter` already set |
-| **Ember outro** | CTA section: ember radial expands, settles, holds | Animate `--glow-opacity` 0 → 0.14, settle to 0.09, then hold for 4+ seconds |
-| **Color recolor (no cut)** | Same composition, accent shifts via CSS variables | `tl.to(':root', { '--accent': '``#4F6D8A``', duration: 0.6, ease: 'power2.inOut' })` |
-| **Energy pulse along path** | SVG edge "activates" a network node | `stroke-dasharray + stroke-dashoffset` animated 1 → 0. Node lights via `boxShadow` tween at path end. |
-| **Hold shimmer** | Subtle glint passes over held logo/type | `npx hyperframes add shimmer-sweep`, set `data-interval` |
+| **Card slide-up** | Lower third enters from below | `tl.to(card, { y: 0, autoAlpha: 1, duration: 0.6, ease: 'power3.out' })` from `{ y: 40, autoAlpha: 0 }` |
+| **Stat pop** | Stat callout appears with slight scale settle | `tl.to(card, { scale: 1, autoAlpha: 1, duration: 0.4, ease: 'back.out(1.2)' })` from `{ scale: 0.92, autoAlpha: 0 }` |
+| **Ember underline draw** | Line draws under the stat number | `tl.from('.ember-line', { scaleX: 0, duration: 0.3, ease: 'power2.out', transformOrigin: 'left' }, '+=0.15')` |
+| **Pull quote slide** | Pull quote enters from left | `tl.to(card, { x: 0, autoAlpha: 1, duration: 0.7, ease: 'power3.out' })` from `{ x: -40, autoAlpha: 0 }` |
+| **Chapter pill** | Chapter marker scales in | `tl.to(pill, { scale: 1, autoAlpha: 1, duration: 0.5, ease: 'expo.out' })` from `{ scale: 0.94, autoAlpha: 0 }` |
+| **Word reveal** | Captions reveal word by word | `gsap.from('.word', { y: 14, autoAlpha: 0, duration: 0.22, ease: 'power3.out', stagger: 0.16 })` |
+| **Ember word flash** | Emphasis word renders in Ember | Render in `color: #FF6A1A` — appears on the same word reveal tween as normal words |
+| **Card exit fade** | Any card exits cleanly | `tl.to(card, { autoAlpha: 0, duration: 0.35, ease: 'power2.in' })` |
+| **Stat exit lift** | Stat callout exits with slight upward drift | `tl.to(card, { y: -10, autoAlpha: 0, duration: 0.35, ease: 'power2.in' })` |
+| **Ember pulse** | Full-screen beat: radial glow fires at decision moment | `tl.to(ember, { opacity: 0.12, duration: 0.4, ease: 'power2.out' }).to(ember, { opacity: 0.07, duration: 1.2, ease: 'sine.inOut' })` |
+| **Amber whip** | Full-screen beat: tinted streak masks the cut | `gsap.fromTo(streak, { xPercent: -150 }, { xPercent: 250, duration: 0.4, ease: 'power3.in' })` |
 
-**The amber whip** replaces the pure-white whip from generic motion graphics. The tint stays in brand without pulling attention from the transition's job (covering the cut).
+### 2.3 Color rules for overlays
 
-### 2.5 Transition Catalog
+White-footage context inverts the standard color usage. This is the source of most first-attempt failures.
 
-| Transition | When to use | Approach |
+| Context | Allowed colors | Forbidden |
 | --- | --- | --- |
-| **Amber whip** | Default cut between scenes | Custom div + GSAP, or `npx hyperframes add whip-pan` |
-| **Ember flash** | Act 1 → Act 2, decisive moments | White-to-ember overlay: `opacity 0 → 0.4 → 0`, 0.5s |
-| **Blur crossfade** | Brand reveal, CTA landing | Two layered scenes, opacity cross with `filter: blur(8px)` on exit |
-| **Void fade** | Between major acts | Both scenes fade through pure void, 0.6s each |
-| **Slide-up reveal** | Product/UI panels, glass cards | `from y: 80px`, `power3.out`, 0.7s |
-| **Steel cut-to-build** | Infrastructure scenes | Scene cuts on steel trace peak, new scene builds from same position |
-| **Serif dolly** | Hero kinetic-type beats | `scale: 1 → 5, opacity: 1 → 0, power2.in` |
-| **Hard cut on action** | When the whip streak peaks | Align `data-start` with streak mid-frame |
+| **Directly on white footage** | Ember `#FF6A1A` at 48px+, Deep Void `#06060A` at 40px+ | Everything else |
+| **Inside dark overlay card** | Soft White, Silver, Copper (32px+), Steel (32px+), Ember | Ash (too subtle) |
+| **Caption pill** | Soft White text on `rgba(6,6,10,0.80)` pill | Steel, Silver, Pewter on pill |
+| **Full-screen void beat** | Full palette applies | — |
 
-### 2.6 Pacing Discipline
+### 2.4 Typography at video scale
 
-- **Default scene length:** 1.0-2.0 seconds mid-section. Opening can hold 2-3s to let void establish.
-- **New visual element:** every 0.3-0.6 seconds within a scene. No dead air over 1 second mid-piece.
-- **Word-reveal stagger:** 0.25-0.35 seconds per word for narrative reads. 0.5-0.6 seconds for single-word emphasis.
-- **Whip transition duration:** 0.35-0.45 seconds. Faster feels glitchy.
-- **Hold durations:**
-  - Brand mark reveal: 1.5-2 seconds
-  - Act transition beat: 0.8-1.2 seconds
-  - Final CTA card: 4-6 seconds (the longest single shot in the piece)
-- **The breathing rule:** every 6-8 seconds of kinetic density, give the viewer a 1-second rest beat. The ember radial settling counts as a rest.
+These are minimums for a 1920×1080 composition. Going below them means the element serves no communication purpose.
 
-### 2.7 Audio Defaults
+| Element | Minimum | Why |
+| --- | --- | --- |
+| Captions | 36px | Read at normal viewing distance on phone |
+| Card body text | 40px | Readable within a 2-second overlay hold |
+| Card labels | 32px | Labels must register instantly |
+| Stat numbers | 72px | The number is the message — it must dominate |
+| Pull quotes | 52px | Must be readable before the card exits |
+| Chapter headings | 48px | Read in under 1 second |
+| Lower third name | 52px | Viewer connects name to face in the first hold |
+
+Source Serif 4 weight 400 throughout. The italic variant carries pull quotes and Ember emphasis words. Plus Jakarta Sans for all labels, captions, and body.
+
+### 2.5 Pacing discipline
+
+**Overlay timing:**
+- Lower third entry: within the first 30 seconds, after the hook
+- Stat callout: fire within 0.5s of the spoken number landing
+- Pull quote: fire within 1s of the claim being fully stated
+- Chapter marker: fire on the spoken transition phrase, not before
+- Caption reveal stagger: 0.16s per word — faster feels rushed, slower feels sluggish
+
+**Hold durations:**
+- Lower third: 4–5 seconds
+- Stat callout: spoken duration, minimum 2.5 seconds
+- Pull quote: spoken duration + 1 second
+- Chapter marker: 2.5–3 seconds
+- Final CTA full-screen beat: 5+ seconds of stillness
+
+**The silence rule:** Never animate an overlay exit while the speaker is mid-sentence. Cards must exit during natural spoken pauses — breath, comma, or end of point. If the speaker never pauses, the card holds until the section ends.
+
+### 2.6 Full-screen composition beats
+
+These are separate from overlay beats. They use the deep void canvas and apply to intro sequences, CTA outros, and major act transitions.
+
+For the full vocabulary of full-screen beats (ember pulse, steel trace, copper marks, kinetic serif, void breathe, amber whip), see the motion vocabulary in the original full-screen section. The pacing rules for full-screen beats (1–2s per beat, no dead air over 1s) still apply.
+
+The key difference: full-screen beats are fully controlled compositions. Overlay beats are time-locked to the video clip underneath.
+
+### 2.7 Audio
 
 | Layer | Volume | Role |
 | --- | --- | --- |
-| Voiceover | `1.0` | Primary, drives timing |
-| Underscore (warm ambient pad) | `0.12-0.15` | Barely present. Sets mood. |
-| SFX (settle clicks, soft whooshes) | `0.18` | Tails may bleed into next beat |
+| Speaker (talking head) | `1.0` | Primary — drives all timing |
+| Underscore (warm ambient pad) | `0.10–0.12` | Nearly invisible. Warmth only. |
+| Overlay SFX (soft settle click) | `0.15` | Optional. Short tail. |
 
-Wire as sibling `<audio>` elements in root composition. Music-free is valid. Pad-only is the default.
+Music-free is a valid and often better choice. The speaker's voice is the soundtrack.
 
 ---
 
-## 3 · Building in HyperFrames — Concrete Recipes
+## 3 · Building Overlays in HyperFrames — Concrete Recipes
 
-### 3.1 Composition shell
+### 3.1 Project structure for talking-head video
 
 ```
-project-name/
-├── index.html
+hihnala-video/
+├── index.html                    ← root: video clip + overlay sub-comps chained
 ├── compositions/
-│   ├── 01-opening.html
-│   ├── 02-problem.html
-│   ├── 03-solution-a.html
-│   ├── 04-solution-b.html
-│   ├── 05-solution-c.html
-│   ├── 06-outcome.html
-│   └── 07-cta-outro.html
+│   ├── 00-intro-beat.html        ← full-screen void beat (optional cold open)
+│   ├── 01-lower-third.html       ← lower third sub-comp
+│   ├── 02-captions-act1.html     ← captions for act 1 (or use body-level siblings)
+│   ├── 03-stat-callout-a.html    ← stat callout, point 1
+│   ├── 04-pull-quote-a.html      ← pull quote, point 1
+│   ├── 05-chapter-2.html         ← chapter marker
+│   ├── 06-stat-callout-b.html    ← stat callout, point 2
+│   ├── 07-pull-quote-b.html      ← pull quote, point 2
+│   └── 08-cta-outro.html         ← full-screen ember CTA
 └── assets/
     ├── brand-tokens.css
+    ├── talking-head.mp4           ← the raw footage
     ├── hihnala-logo.jpg
     └── ambient-pad.mp3
 ```
 
-`index.html` chains compositions via `<template>` + `data-composition-src`.
+The talking-head video clip goes in `index.html` as the base layer (track-index 0). All overlay sub-comps layer above it (track-index 2+).
 
-### 3.2 The void background (base for every scene)
+### 3.2 Lower third recipe
 
 ```html
-<div class="stage" data-composition-id="...">
-  <!-- Layer 0: pure void -->
-  <!-- Just body { background: #06060A } — the void is the default -->
+<!-- compositions/01-lower-third.html -->
+<template id="lower-third-template">
+  <div data-composition-id="lower-third"
+       data-start="0"
+       data-duration="8"
+       data-width="1920" data-height="1080">
 
-  <!-- Layer 1: ambient ember radial (most scenes) -->
-  <div class="ember-ambient clip" data-start="0" data-duration="5" data-track-index="0"></div>
+    <div class="lt-card">
+      <div class="lt-copper-rule"></div>
+      <div class="lt-name">Markku Hihnala</div>
+      <div class="lt-role">AI Strategy & Implementation</div>
+    </div>
 
-  <!-- Layer 2: particle drift -->
-  <div class="particles clip" data-start="0" data-duration="5" data-track-index="1"></div>
+  </div>
+</template>
 
-  <!-- Layer 3: vignette (always on top of bg, below content) -->
-  <div class="vignette clip" data-start="0" data-duration="5" data-track-index="9"></div>
+<style>
+[data-composition-id="lower-third"] .lt-card {
+  position: absolute;
+  left: 72px; bottom: 80px;
+  width: 560px;
+  background: rgba(6, 6, 10, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 12px;
+  padding: 28px 36px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  opacity: 0; visibility: hidden;
+}
 
-  <!-- Layer 4: grain overlay -->
-  <div class="grain clip" data-start="0" data-duration="5" data-track-index="10"></div>
+[data-composition-id="lower-third"] .lt-copper-rule {
+  width: 40px; height: 2px;
+  background: #D4892F;
+  margin-bottom: 14px;
+}
 
-  <!-- Content layers go in tracks 2-8 -->
+[data-composition-id="lower-third"] .lt-name {
+  font-family: 'Source Serif 4', serif;
+  font-size: 52px; font-weight: 400;
+  color: #F5F5F7;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+[data-composition-id="lower-third"] .lt-role {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 34px; font-weight: 400;
+  color: #CDCDD4;
+}
+</style>
+
+<script>
+const SLOT = 8;
+const tl = gsap.timeline({ paused: true });
+
+// Entry at t=0.5 (give the footage half a second to establish)
+tl.to('.lt-card', { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out' }, 0.5);
+
+// Exit at t=5.5 (after ~5 second hold)
+tl.to('.lt-card', { autoAlpha: 0, duration: 0.4, ease: 'power2.in' }, 5.5);
+
+// Law #10
+tl.to({}, { duration: SLOT }, 0);
+window.__timelines['lower-third'] = tl;
+</script>
+```
+
+### 3.3 Stat callout recipe
+
+```html
+<!-- compositions/03-stat-callout-a.html -->
+<template id="stat-callout-a-template">
+  <div data-composition-id="stat-callout-a"
+       data-start="0"
+       data-duration="7"
+       data-width="1920" data-height="1080">
+
+    <div class="stat-card">
+      <div class="stat-label">AVERAGE AI PROJECT</div>
+      <div class="stat-number">18<span class="stat-unit">mo</span></div>
+      <div class="stat-ember-line"></div>
+      <div class="stat-context">before first business result</div>
+    </div>
+
+  </div>
+</template>
+
+<style>
+[data-composition-id="stat-callout-a"] .stat-card {
+  position: absolute;
+  right: 96px; top: 50%;
+  transform: translateY(-50%);
+  width: 420px;
+  background: rgba(6, 6, 10, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 12px;
+  padding: 32px 40px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  opacity: 0; visibility: hidden;
+}
+
+[data-composition-id="stat-callout-a"] .stat-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 22px; font-weight: 500;
+  letter-spacing: 0.08em;
+  color: #D4892F;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+[data-composition-id="stat-callout-a"] .stat-number {
+  font-family: 'Source Serif 4', serif;
+  font-size: 88px; font-weight: 400;
+  color: #F5F5F7;
+  line-height: 1;
+}
+
+[data-composition-id="stat-callout-a"] .stat-unit {
+  font-size: 48px;
+  color: #CDCDD4;
+}
+
+[data-composition-id="stat-callout-a"] .stat-ember-line {
+  width: 0%; height: 3px;
+  background: #FF6A1A;
+  margin: 16px 0;
+  transform-origin: left;
+}
+
+[data-composition-id="stat-callout-a"] .stat-context {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 28px; font-weight: 400;
+  color: #8E8E99;
+  line-height: 1.3;
+}
+</style>
+
+<script>
+const SLOT = 7;
+const tl = gsap.timeline({ paused: true });
+
+// Entry at t=0.3
+tl.to('.stat-card', { scale: 1, autoAlpha: 1, duration: 0.4, ease: 'back.out(1.2)' }, 0.3);
+
+// Ember line draws in after number lands
+tl.to('.stat-ember-line', { width: '60%', duration: 0.3, ease: 'power2.out' }, 0.7);
+
+// Exit at t=5.8
+tl.to('.stat-card', { y: -10, autoAlpha: 0, duration: 0.35, ease: 'power2.in' }, 5.8);
+
+// Law #10
+tl.to({}, { duration: SLOT }, 0);
+window.__timelines['stat-callout-a'] = tl;
+</script>
+```
+
+### 3.4 Pull quote recipe
+
+```html
+<!-- compositions/04-pull-quote-a.html -->
+<template id="pull-quote-a-template">
+  <div data-composition-id="pull-quote-a"
+       data-start="0"
+       data-duration="9"
+       data-width="1920" data-height="1080">
+
+    <div class="pq-card">
+      <div class="pq-accent-bar"></div>
+      <div class="pq-text">
+        Most AI implementations fail before they start — not from bad tools, but from skipped strategy.
+      </div>
+    </div>
+
+  </div>
+</template>
+
+<style>
+[data-composition-id="pull-quote-a"] .pq-card {
+  position: absolute;
+  left: 72px; bottom: 120px;
+  width: 760px;
+  background: rgba(6, 6, 10, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 12px;
+  padding: 32px 40px 32px 52px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  display: flex; align-items: flex-start; gap: 20px;
+  opacity: 0; visibility: hidden;
+}
+
+[data-composition-id="pull-quote-a"] .pq-accent-bar {
+  width: 4px; min-height: 100%;
+  background: #FF6A1A;
+  border-radius: 2px;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+
+[data-composition-id="pull-quote-a"] .pq-text {
+  font-family: 'Source Serif 4', serif;
+  font-size: 52px; font-weight: 400; font-style: italic;
+  color: #CDCDD4;
+  line-height: 1.35;
+}
+</style>
+
+<script>
+const SLOT = 9;
+const tl = gsap.timeline({ paused: true });
+
+// Entry
+tl.to('.pq-card', { x: 0, autoAlpha: 1, duration: 0.7, ease: 'power3.out' }, 0.4);
+
+// Exit at t=7.5
+tl.to('.pq-card', { autoAlpha: 0, duration: 0.4, ease: 'sine.in' }, 7.5);
+
+// Law #10
+tl.to({}, { duration: SLOT }, 0);
+window.__timelines['pull-quote-a'] = tl;
+</script>
+```
+
+### 3.5 Chapter marker recipe
+
+```html
+<!-- compositions/05-chapter-2.html -->
+<template id="chapter-2-template">
+  <div data-composition-id="chapter-2"
+       data-start="0"
+       data-duration="5"
+       data-width="1920" data-height="1080">
+
+    <div class="ch-pill">
+      <div class="ch-label">PART 2</div>
+      <div class="ch-heading">The Implementation Gap</div>
+    </div>
+
+  </div>
+</template>
+
+<style>
+[data-composition-id="chapter-2"] .ch-pill {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(6, 6, 10, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 50px;
+  padding: 24px 48px;
+  text-align: center;
+  white-space: nowrap;
+  opacity: 0; visibility: hidden;
+}
+
+[data-composition-id="chapter-2"] .ch-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 22px; font-weight: 500;
+  letter-spacing: 0.10em;
+  color: #D4892F;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+[data-composition-id="chapter-2"] .ch-heading {
+  font-family: 'Source Serif 4', serif;
+  font-size: 48px; font-weight: 400;
+  color: #F5F5F7;
+}
+</style>
+
+<script>
+const SLOT = 5;
+const tl = gsap.timeline({ paused: true });
+
+// Entry
+tl.to('.ch-pill', { scale: 1, autoAlpha: 1, duration: 0.5, ease: 'expo.out' }, 0.3);
+
+// Exit at t=3.8
+tl.to('.ch-pill', { scale: 0.96, autoAlpha: 0, duration: 0.4, ease: 'power2.in' }, 3.8);
+
+// Law #10
+tl.to({}, { duration: SLOT }, 0);
+window.__timelines['chapter-2'] = tl;
+</script>
+```
+
+### 3.6 Kinetic captions (body-level siblings)
+
+Keep captions out of sub-composition timelines. Place in `index.html` as body-level siblings of the master composition div.
+
+```html
+<!-- In index.html, outside the main composition div -->
+<div class="cap clip" data-start="3.2"  data-duration="2.1"  data-track-index="30">
+  Most AI projects take <span class="cap-ember">too long</span>.
 </div>
+<div class="cap clip" data-start="5.6"  data-duration="2.8"  data-track-index="31">
+  Not because the tools are wrong.
+</div>
+<div class="cap clip" data-start="8.5"  data-duration="3.2"  data-track-index="32">
+  Because the <span class="cap-ember">strategy</span> was skipped.
+</div>
+```
+
+```css
+.cap {
+  position: absolute;
+  bottom: 64px; left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 24px;
+  border-radius: 50px;
+  background: rgba(6, 6, 10, 0.80);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  font: 500 36px/1.3 'Plus Jakarta Sans', sans-serif;
+  color: #F5F5F7;
+  white-space: nowrap;
+}
+
+.cap-ember {
+  color: #FF6A1A;
+}
+```
+
+Word-by-word reveals require splitting caption text into individual word `<span>` elements and applying stagger GSAP reveals inside `index.html` script. Each caption element appears at its `data-start` via the clip system — the word-reveal animation runs within that window.
+
+### 3.7 Full-screen CTA outro (dark void beat)
+
+```html
+<!-- compositions/08-cta-outro.html -->
+<template id="cta-outro-template">
+  <div data-composition-id="cta-outro"
+       data-start="0"
+       data-duration="12"
+       data-width="1920" data-height="1080">
+
+    <!-- Layer 0: void background (just body background) -->
+    <!-- Layer 1: ember ambient -->
+    <div class="ember-ambient"></div>
+    <!-- Layer 2: vignette -->
+    <div class="vignette"></div>
+
+    <!-- Layer 3: CTA content -->
+    <div class="cta-wrap">
+      <div class="cta-eyebrow">READY TO START</div>
+      <div class="cta-heading">Book a Discovery Call</div>
+      <div class="cta-url">hihnala.com</div>
+    </div>
+
+    <!-- Layer 4: logo -->
+    <img class="cta-logo" src="../assets/hihnala-logo.jpg" alt="Hihnala">
+
+  </div>
+</template>
 
 <style>
 body { background: #06060A; }
 
-.ember-ambient {
+[data-composition-id="cta-outro"] .ember-ambient {
   position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(ellipse 60% 40% at 50% 65%,
-    rgba(255, 106, 26, 0.08) 0%,
-    rgba(255, 106, 26, 0.03) 40%,
-    transparent 70%
-  );
+  background: radial-gradient(ellipse 55% 40% at 50% 60%,
+    rgba(255,106,26,0.10) 0%, rgba(6,6,10,0) 70%);
 }
 
-.vignette {
+[data-composition-id="cta-outro"] .vignette {
   position: absolute; inset: 0; pointer-events: none;
   background: radial-gradient(ellipse at center, transparent 30%, #040408 95%);
 }
-</style>
 
-<script>
-// Void breathe — keeps still frames alive
-gsap.to('.ember-ambient', {
-  opacity: 0.7,
-  duration: 4,
-  repeat: -1,
-  yoyo: true,
-  ease: 'sine.inOut'
-});
+[data-composition-id="cta-outro"] .cta-wrap {
+  position: absolute; left: 50%; top: 45%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  opacity: 0; visibility: hidden;
+}
 
-gsap.to('.vignette', {
-  opacity: 0.85,
-  duration: 5,
-  repeat: -1,
-  yoyo: true,
-  ease: 'sine.inOut'
-});
-</script>
-```
+[data-composition-id="cta-outro"] .cta-eyebrow {
+  font: 500 22px/1 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: 0.12em;
+  color: #D4892F;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
 
-### 3.3 Kinetic serif type opener
-
-```html
-<div class="kinetic-serif">
-  <span class="word w1">AI</span>
-  <span class="word w2">implementation</span>
-  <span class="word w3">takes</span>
-  <span class="word w4">too</span>
-  <span class="word w5 hero">long.</span>
-</div>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&display=swap');
-
-.word {
-  font-family: 'Source Serif 4', serif;
-  font-weight: 400;
-  font-size: 72px;
-  optical-sizing: auto;
+[data-composition-id="cta-outro"] .cta-heading {
+  font: 400 72px/1.1 'Source Serif 4', serif;
   color: #F5F5F7;
-  display: block;
+  margin-bottom: 24px;
 }
 
-.hero {
-  font-size: 72px;  /* base — GSAP scales it */
-  color: #CDCDD4;  /* Silver — carries weight differently */
-  font-style: italic;
+[data-composition-id="cta-outro"] .cta-url {
+  font: 400 40px/1 'Plus Jakarta Sans', sans-serif;
+  color: #FF6A1A;
 }
-</style>
 
-<script>
-const tl = gsap.timeline({ paused: true });
-
-tl.from('.w1', { y: 24, opacity: 0, scale: 0.92, duration: 0.5, ease: 'power3.out' }, 0)
-  .from('.w2', { y: 24, opacity: 0, scale: 0.92, duration: 0.5, ease: 'power3.out' }, 0.3)
-  .from('.w3', { y: 24, opacity: 0, scale: 0.92, duration: 0.5, ease: 'power3.out' }, 0.55)
-  .from('.w4', { y: 24, opacity: 0, scale: 0.92, duration: 0.5, ease: 'power3.out' }, 0.75)
-  .from('.w5', { y: 24, opacity: 0, scale: 0.92, duration: 0.5, ease: 'power3.out' }, 0.95)
-  // Hero scale — camera passes through the anchor word
-  .fromTo('.w5',
-    { scale: 1, opacity: 1 },
-    { scale: 5, opacity: 0, duration: 1.1, ease: 'power2.in' },
-    1.8
-  );
-
-window.__timelines['kinetic-serif'] = tl;
-</script>
-```
-
-### 3.4 Ember pulse event
-
-For decisive moments — a resolution beat, a CTA approach, a key statistic.
-
-```html
-<div class="ember-stage"></div>
-
-<style>
-.ember-stage {
-  position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(ellipse 50% 35% at 50% 60%,
-    rgba(255, 106, 26, var(--glow-opacity, 0)) 0%,
-    transparent 70%
-  );
+[data-composition-id="cta-outro"] .cta-logo {
+  position: absolute; bottom: 60px; right: 72px;
+  width: 80px; height: 80px; border-radius: 8px;
+  filter: drop-shadow(0 0 20px rgba(255,106,26,0.35));
+  opacity: 0; visibility: hidden;
 }
 </style>
 
 <script>
+const SLOT = 12;
 const tl = gsap.timeline({ paused: true });
 
-// Pulse in on the decisive beat
-tl.to('.ember-stage', { '--glow-opacity': 0.14, duration: 0.4, ease: 'power2.out' }, 0)
-  // Settle — not a flash, a landing
-  .to('.ember-stage', { '--glow-opacity': 0.08, duration: 1.2, ease: 'sine.inOut' }, 0.4);
+// Void breathe
+gsap.to('.ember-ambient', { opacity: 0.7, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
 
-window.__timelines['ember-pulse'] = tl;
+// CTA content enters
+tl.to('.cta-wrap', { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 1.0);
+tl.to('.cta-logo', { autoAlpha: 1, duration: 0.6, ease: 'power2.out' }, 1.4);
+
+// Ember pulse at t=2s
+tl.to('.ember-ambient', { opacity: 0.14, duration: 0.4, ease: 'power2.out' }, 2.0);
+tl.to('.ember-ambient', { opacity: 0.08, duration: 1.5, ease: 'sine.inOut' }, 2.4);
+
+// Hold for 5+ seconds — the longest shot in the piece
+// Law #10
+tl.to({}, { duration: SLOT }, 0);
+window.__timelines['cta-outro'] = tl;
 </script>
 ```
 
-### 3.5 Steel energy trace
+---
 
-For infrastructure beats — showing systems connecting, processes linking.
+## 4 · HyperFrames Technical Recipes
 
-```html
-<svg class="network" viewBox="0 0 1920 1080">
-  <path id="trace-path" d="M 400,540 Q 760,300 960,540 Q 1160,780 1520,540"
-    fill="none"
-    stroke="rgba(79,109,138,0.3)"
-    stroke-width="1.5"
-    stroke-dasharray="800"
-    stroke-dashoffset="800"
-  />
-  <circle class="node" cx="400" cy="540" r="6" fill="#4F6D8A" opacity="0.4"/>
-  <circle class="node" cx="960" cy="540" r="6" fill="#4F6D8A" opacity="0.4"/>
-  <circle class="node" cx="1520" cy="540" r="6" fill="#4F6D8A" opacity="0.4"/>
-</svg>
+### 4.1 The timeline-padding rule (Law #10)
 
-<script>
-const tl = gsap.timeline({ paused: true });
-
-// Trace activates along the path
-tl.to('#trace-path', { strokeDashoffset: 0, duration: 1.5, ease: 'power2.inOut' }, 0)
-  // Nodes light up as the trace reaches them
-  .to('.node:nth-child(2)', {
-    opacity: 1,
-    filter: 'drop-shadow(0 0 12px rgba(79,109,138,0.7))',
-    duration: 0.3,
-    ease: 'power2.out'
-  }, 0.75)
-  .to('.node:nth-child(3)', {
-    opacity: 1,
-    filter: 'drop-shadow(0 0 12px rgba(79,109,138,0.7))',
-    duration: 0.3,
-    ease: 'power2.out'
-  }, 1.5);
-
-window.__timelines['steel-trace'] = tl;
-</script>
-```
-
-### 3.6 Amber whip transition
-
-```html
-<div class="whip-streak clip"
-     data-start="2.8" data-duration="0.45" data-track-index="8"></div>
-
-<style>
-.whip-streak {
-  position: absolute; top: 50%; left: 0;
-  width: 35%; height: 6px;
-  background: linear-gradient(90deg,
-    transparent,
-    rgba(255, 140, 66, 0.9),
-    rgba(255, 106, 26, 0.6),
-    transparent
-  );
-  filter: blur(4px);
-  transform: translateY(-50%);
-}
-</style>
-
-<script>
-gsap.fromTo('.whip-streak',
-  { xPercent: -100, scaleX: 0.6 },
-  { xPercent: 250, scaleX: 1.4, duration: 0.45, ease: 'power3.in' }
-);
-</script>
-```
-
-The next scene's `data-start` should land at the streak's peak (around 60% through the streak duration).
-
-### 3.7 Copper structure marks
-
-```html
-<div class="copper-marks">
-  <div class="mark" style="left: 480px; top: 270px;"></div>
-  <div class="mark" style="left: 960px; top: 270px;"></div>
-  <div class="mark" style="left: 1440px; top: 270px;"></div>
-</div>
-
-<style>
-.mark {
-  position: absolute;
-  width: 16px; height: 16px;
-  opacity: 0;
-}
-
-.mark::before,
-.mark::after {
-  content: '';
-  position: absolute;
-  background: rgba(212, 137, 47, 0.5);
-}
-
-/* Horizontal bar */
-.mark::before { left: 0; top: 50%; width: 100%; height: 1px; transform: translateY(-50%); }
-/* Vertical bar */
-.mark::after  { top: 0; left: 50%; height: 100%; width: 1px; transform: translateX(-50%); }
-</style>
-
-<script>
-const tl = gsap.timeline({ paused: true });
-
-tl.from('.mark', {
-  opacity: 0,
-  scale: 0.5,
-  duration: 0.3,
-  ease: 'back.out(1.4)',
-  stagger: 0.08
-});
-
-window.__timelines['copper-marks'] = tl;
-</script>
-```
-
-### 3.8 The timeline-padding rule (Law #10)
-
-Every sub-composition ends its timeline with a no-op duration anchor:
+Every sub-composition ends with a no-op anchor:
 
 ```javascript
-const tl = gsap.timeline({ paused: true });
-// … all your tweens …
-tl.to({}, { duration: SLOT_DURATION }, 0);  // anchor: forces timeline.duration() >= SLOT_DURATION
-window.__timelines['my-comp'] = tl;
+tl.to({}, { duration: SLOT_DURATION }, 0);
+window.__timelines['<data-composition-id>'] = tl;
 ```
 
-HyperFrames sets `visibility: hidden` on the composition the moment `timeline.duration()` falls short of `data-duration`, producing a black frame flash at the beat tail. The anchor tween has zero animation cost. Diagnose with:
-
+Diagnose missing timelines:
 ```javascript
 const p = document.querySelector('hyperframes-player');
 const iw = p.shadowRoot.querySelector('iframe').contentWindow;
-Object.fromEntries(Object.entries(iw.__timelines).map(([k, v]) =>
+Object.fromEntries(Object.entries(iw.__timelines).map(([k,v]) =>
   [k, +v.duration().toFixed(4)]));
 ```
 
-Any value where `timeline.duration() < data-duration` is a black-frame risk.
+Any `timeline.duration() < data-duration` value is a black-frame risk.
 
-### 3.9 Velocity-matched easing at beat seams
+### 4.2 Velocity-matched easing at beat seams
 
-When an entry tween hands off to a linear hold, derive a custom ease so end-velocity matches the next tween's start-velocity. The eye reads any velocity discontinuity as a stall.
+When an entry tween hands off to a linear hold, match end-velocity to avoid a perceived stall. For entry going 0 → 1 over 0.9s with desired end-velocity `v = 0.194`:
 
 ```javascript
-// Entry goes 0 → 1 over 0.9s, then holds linearly at −0.123/s for 0.65s.
-// Match at seam: p'(1) = 0.194. Quadratic: a = −0.806, b = 1.806.
 const entryEase = (t) => -0.806 * t * t + 1.806 * t;
-
 tl.to(card, { z: -50, duration: 0.9, ease: entryEase }, 0);
 tl.to(card, { z: -80, duration: 0.65, ease: 'none' }, 0.9);
 ```
 
-### 3.10 GSAP proxy pattern — Canvas 2D inside a timeline
-
-Drive arbitrary Canvas 2D rendering from a single tween that advances a proxy time value:
+### 4.3 GSAP proxy pattern for Canvas 2D
 
 ```javascript
 const proxy = { time: 0 };
-tl.to(proxy, {
-  time: DURATION,
-  duration: DURATION,
-  ease: 'none',
-  onUpdate: () => renderAtTime(proxy.time)
-}, 0);
+tl.to(proxy, { time: DURATION, duration: DURATION, ease: 'none',
+  onUpdate: () => renderAtTime(proxy.time) }, 0);
 ```
 
-Two rules:
-1. Canvas 2D is headless-safe. Live WebGL can stall the render — ship a Canvas 2D fallback keyed off `renderOptions.headless`.
-2. No `Math.random()` or `Date.now()` inside. Use seeded PRNGs or harmonic-sin hashes. Renders must be deterministic.
+No `Math.random()` / `Date.now()` inside. Use harmonic-sin hashes for determinism.
 
-### 3.11 Tall-canvas camera pan
+### 4.4 Tall-canvas camera pan
 
 ```css
 .viewport { width: 1920px; height: 1080px; overflow: hidden; }
@@ -585,174 +695,243 @@ Two rules:
 ```
 
 ```javascript
-tl.to(canvas, { y: 0 }, 0);
 tl.to(canvas, { y: -1080, duration: 1.2, ease: 'power2.inOut' }, 1.8);
-tl.to(canvas, { y: -3240, duration: 2.1, ease: 'power2.inOut' }, 3.2);
 ```
 
-Use `power2.inOut` for topic changes. Use `none` for constant-velocity scrolls through related content.
-
-### 3.12 Video poster + lastframe bracketing
+### 4.5 Video poster + lastframe bracketing
 
 ```html
-<img id="beat-poster"    src="assets/beat-poster.jpg">
-<video id="beat-video"   src="assets/beat-clip.mp4"
-       data-start="7.1" data-duration="8.94" data-track-index="5" muted></video>
-<img id="beat-lastframe" src="assets/beat-lastframe.jpg">
+<img id="poster"    src="assets/poster.jpg">
+<video id="clip"    src="assets/clip.mp4" data-start="7.1" data-duration="8.94" data-track-index="5" muted></video>
+<img id="lastframe" src="assets/lastframe.jpg">
 ```
 
 ```javascript
-tl.set('#beat-poster',    { display: 'none' }, 7.1);
-tl.set('#beat-lastframe', { opacity: 1 }, 16.04);
+tl.set('#poster',    { display: 'none' }, 7.1);
+tl.set('#lastframe', { opacity: 1 }, 16.04);
 ```
 
-Generate stills with ffmpeg:
 ```bash
 ffmpeg -y -ss 0       -i clip.mp4 -frames:v 1 -q:v 2 poster.jpg
 ffmpeg -y -sseof -0.04 -i clip.mp4 -frames:v 1 -q:v 2 lastframe.jpg
 ```
 
-### 3.13 Captions as body-level siblings
+### 4.6 Tween-comment convention
 
-Keep captions out of sub-composition timelines:
+Every entry/exit tween names its matching tween in the adjacent beat:
 
-```html
-<!-- In index.html, outside the master composition div -->
-<div class="cap clip" data-start="3.2"  data-duration="2.1"  data-track-index="30">Deployed in weeks, not quarters.</div>
-<div class="cap clip" data-start="5.4"  data-duration="2.8"  data-track-index="31">Three engagements. One clear outcome.</div>
+```javascript
+// ENTRY — y and blur match the outgoing "hook" beat's exit values
+gsap.set(wrap, { filter: 'blur(18px)', y: 40 });
+tl.to(wrap, { filter: 'blur(0px)', y: 0, duration: 0.35, ease: 'power2.out' }, 0);
+
+// EXIT at t=5.8 — matches the incoming "stat" beat's x: -40 entry
+tl.to(wrap, { x: -40, autoAlpha: 0, duration: 0.35, ease: 'power2.in' }, 5.8);
 ```
 
+If you can't name the matching tween, you haven't designed the seam.
+
+---
+
+## 5 · Sub-Composition Gotchas
+
+Hard-won rules from production. Every one of these causes silent failures or broken output.
+
+### 5.1 Container sizing: `data-width`/`data-height`, not CSS `inset: 0`
+
+The container div in `index.html` that loads a sub-composition must carry explicit dimension attributes. CSS `inset: 0` handles visual stacking but does not substitute for the data attributes.
+
+```html
+<!-- CORRECT -->
+<div id="act1-comp"
+     data-composition-id="act1"
+     data-composition-src="compositions/01-act1.html"
+     data-start="30" data-duration="29" data-track-index="2"
+     data-width="1920" data-height="1080"></div>
+
+<!-- WRONG — missing data-width/data-height -->
+<div style="inset: 0; position: absolute;" ...></div>
+```
+
+### 5.2 CSS selectors: `[data-composition-id="..."]`, not `#id`
+
+The template inner div has no `id` attribute — `data-composition-id` is the identifier. Ignore the linter suggestion to switch to `#id` selectors for sub-compositions.
+
 ```css
-.cap {
-  position: absolute; bottom: 72px; left: 50%; transform: translateX(-50%);
-  padding: 10px 20px; border-radius: 50px;
-  background: rgba(6, 6, 10, 0.6);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  font: 500 26px/1.3 'Plus Jakarta Sans', sans-serif;
-  color: #CDCDD4;
+/* CORRECT */
+[data-composition-id="act1"] .stat-card { ... }
+
+/* WRONG — inner div has no id, matches nothing */
+#act1 .stat-card { ... }
+```
+
+The linter warning is a style preference, not a bug. Leave as warnings.
+
+### 5.3 Template inner div must have `data-start="0"` and `data-duration`
+
+Without both attributes, the sub-composition silently fails to load — no error, just nothing visible.
+
+```html
+<template id="act1-template">
+  <div data-composition-id="act1"
+       data-start="0"        <!-- REQUIRED -->
+       data-duration="29"    <!-- REQUIRED -->
+       data-width="1920" data-height="1080">
+    ...
+  </div>
+</template>
+```
+
+### 5.4 `class="clip"` does nothing inside sub-compositions
+
+`class="clip"` with `data-start` / `data-duration` / `data-track-index` is a root-composition-only mechanism. Inside a sub-composition, every element with `class="clip"` is treated as a plain `div` — all elements appear simultaneously the moment the sub-composition renders.
+
+**Fix: use GSAP ****`autoAlpha`**** for all show/hide inside sub-compositions.**
+
+```css
+/* Start all overlay elements hidden in CSS */
+[data-composition-id="my-comp"] .overlay-element {
+  opacity: 0;
+  visibility: hidden;
 }
 ```
 
-Central control, zero coupling to scene timelines.
-
-### 3.14 Tween-comment convention
-
-Every entry/exit tween explicitly names the matching tween in the adjacent beat:
-
 ```javascript
-// ENTRY — blur de-ramps from 18px to match the outgoing "infrastructure" beat's 18px exit.
-gsap.set(wrap, { filter: 'blur(18px)' });
-tl.to(wrap, { filter: 'blur(0px)', duration: 0.35, ease: 'power2.out' }, 0);
+const tl = gsap.timeline({ paused: true });
 
-// EXIT (at local 1.65) — matches the incoming "outcome" beat's 60px y + 18px blur entry.
-tl.to(wrap, { y: -60, filter: 'blur(18px)', duration: 0.35, ease: 'power2.in' }, 1.65);
+// Show at t=2.0
+tl.to('.overlay-element', { autoAlpha: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 2.0);
+
+// Hide at t=5.5
+tl.set('.overlay-element', { autoAlpha: 0 }, 5.5);
 ```
 
-If you can't name the matching tween in a comment, the seam isn't designed.
+### 5.5 Glow / ember elements: opacity-only, not gradient animation
+
+GSAP gradient interpolation produces hard swaps, not smooth transitions. For glow elements, animate `opacity` only — never `backgroundImage` or gradient stops.
+
+```css
+.ember-pulse {
+  background: radial-gradient(ellipse 55% 40% at 50% 58%,
+    rgba(255,106,26,0.12) 0%, rgba(6,6,10,0) 70%);
+  opacity: 0; visibility: hidden;
+}
+```
+
+```javascript
+tl.to('.ember-pulse', { autoAlpha: 1, duration: 0.4, ease: 'power2.out' }, 2.0);
+tl.to('.ember-pulse', { opacity: 0.5, duration: 1.5, ease: 'sine.inOut' }, 2.4);
+tl.set('.ember-pulse', { autoAlpha: 0 }, 4.5);
+```
 
 ---
 
-## 4 · Pre-flight Checklist
+## 6 · Pre-flight Checklist
 
-- [ ] **Average scene length ≤ 2s** in mid-section (opening/outro can hold longer)
-- [ ] **No dead air over 1s** except deliberate hold moments
-- [ ] **Every transition uses motion** (amber whip, ember flash, blur crossfade, slide — never a hard fade between unrelated beats)
-- [ ] **Color palette: three accent families maximum** (Ember, Steel, Copper). One dominant per scene.
-- [ ] **One Ember moment per section** — no more
-- [ ] **Void and vignette present in every scene** — don't ship a flat-lit composition
-- [ ] **Grain overlay on every scene** — subtle, but always there
-- [ ] **Source Serif 4 weight 400 on all headings** — never 700
-- [ ] **Ambient ember radial present** in at least the opening, Act 2 resolution beats, and the CTA
-- [ ] **Breathing moments every 6-8s** — ember settling, coin reveal equivalent, brand statement hold
-- [ ] **At least one callback** — a visual element that returns (Copper marks reappearing, the brand mark appearing mid-piece and again at outro)
-- [ ] **CTA card holds 4+ seconds** — no exceptions
-- [ ] **Visual verification done** — extracted frames, confirmed: no text overflow, no broken transitions, no scene landing mid-word
-- [ ] **Every sub-composition timeline ends with ****`tl.to({}, { duration: SLOT_DURATION }, 0)`** (Law #10)
-- [ ] **All tween end-times snap to multiples of ****`1/fps`** — at 30fps: 0.0333, 0.0667, 0.1...
-- [ ] **Ran the timeline-duration diagnostic** and confirmed no `timeline.duration() < data-duration` gaps
+### Overlay beats
+- [ ] Container in `index.html` has `data-width="1920" data-height="1080"`
+- [ ] Template inner div has `data-start="0"` and `data-duration`
+- [ ] CSS uses `[data-composition-id="..."]` selectors throughout
+- [ ] No `class="clip"` on inner elements — removed entirely
+- [ ] All overlay elements start with `opacity: 0; visibility: hidden` in CSS
+- [ ] Visibility controlled entirely via GSAP `autoAlpha`
+- [ ] No overlay covers the speaker's face
+- [ ] No two non-caption overlays visible simultaneously
+- [ ] No text below 32px anywhere in the composition
+- [ ] No Steel, Silver, Pewter, or Ash text directly on white footage
+- [ ] All overlay exits timed to spoken pauses, not mid-sentence
+- [ ] Captions active throughout
 
----
+### Full-screen beats
+- [ ] Average scene length ≤ 2s in mid-section
+- [ ] Every transition uses motion (amber whip, ember flash, slide — never a hard fade)
+- [ ] One ember moment per section
+- [ ] Void and vignette present in every scene
+- [ ] Grain overlay on every scene
+- [ ] CTA holds 5+ seconds
 
-## 5 · The "What Would Hihnala Do?" Test
-
-Before shipping any motion piece:
-
-1. **Could I cut this scene in half?** If yes, do it.
-2. **Is this color carrying a meaning?** If no, remove it.
-3. **Is the void dominant?** If more than 20% of the frame is lit, you're over-designing.
-4. **Does the ambient ember radial breathe?** If the background is completely static, add drift.
-5. **Where's the one ember moment in this section?** If there are two, pick one.
-6. **Does the type scale, or just fade in?** Fading in is the lowest-effort reveal. Scale.
-7. **Does the serif carry this beat, or the sans?** Default to serif for authority moments. Reserve the italic for the close.
-8. **Will the viewer see this visual element again?** If no, consider whether a callback is possible.
-9. **What's the unifying texture?** Void + ambient ember + particle drift. If a scene is missing all three, it doesn't belong to the piece.
-10. **Where does the viewer rest?** Identify the breathing moments. If there are none, build them in.
+### Both types
+- [ ] Every sub-composition timeline ends with `tl.to({}, { duration: SLOT }, 0)`
+- [ ] All tween end-times snap to multiples of `1/fps` (at 30fps: 0.0333, 0.0667, 0.1...)
+- [ ] Ran the timeline-duration diagnostic — no `timeline.duration() < data-duration` gaps
+- [ ] Visual verification done — extracted frames, confirmed no text overflow, no broken transitions
 
 ---
 
-## 6 · Anti-patterns
+## 7 · The "What Would Hihnala Do?" Test
 
-- No chrome gradients on type. Hihnala uses the four-level text color hierarchy.
-- No flat white on flat black. Use the proper text levels: Soft White, Silver, Pewter, Ash.
-- No iridescent, conic, or teal/magenta accents. Three families: Ember, Steel, Copper.
-- No bold Source Serif 4. Weight 400, always.
-- No multiple ember moments in one scene. One decisive beat per section.
-- No hard cuts between unrelated scenes. Every cut needs a transition element.
-- No outro that ends on the last kinetic beat. Hold the CTA for 4+ seconds minimum.
-- No scenes that say two things. Split them.
-- No static backgrounds. Every background has at least ambient particle drift and vignette breath.
-- No decorative grain. Grain is a texture layer that belongs on every scene, not a stylistic choice applied unevenly.
-- No `Math.random()` / `Date.now()` inside render loops. Use harmonic hashes: `Math.abs(Math.sin(i * 0.7 + 0.3) * Math.cos(i * 1.3 + 0.7))` gives reproducible "random-looking" values.
-- No catalog blocks as a shortcut for hero moments. Build the CTA outro and brand reveal by hand. Use catalog blocks for production velocity on secondary beats.
-- No elastic easing (`elastic.out`) for primary entrances. `back.out(1.2)` settling is allowed for cards. `elastic.out` reads as playful, not authoritative.
-- No `transparent` keyword in CSS gradients — use `rgba(6,6,10,0)` for shader compatibility.
-- No rendering without checking frames. Lint passing is not design working. Extract frames. Look at them.
+1. **Could this overlay be removed without losing the argument?** If yes, remove it.
+2. **Is the text large enough to read in 2 seconds?** If you have to squint, it fails.
+3. **Is this color appearing on white footage without a dark card behind it?** Remove it.
+4. **Does the card exit compete with what the speaker is saying?** Delay the exit.
+5. **Are there two overlay cards visible at once?** Collapse to one.
+6. **Are captions on?** They are always on.
+7. **Is the Ember accent carrying a meaning here, or just filling space?** If the latter, remove it.
+8. **Does the speaker's face remain visible?** If the card covers it, reposition.
+9. **What does the viewer see in the first 8 seconds?** If the answer is "nothing but the speaker talking," the cold open is working — add a chapter marker or pull quote only after the hook lands.
+10. **Does the CTA hold for at least 5 seconds?** If not, extend it.
 
 ---
 
-## 7 · GSAP Reference
+## 8 · Anti-patterns
+
+- No Steel, Silver, Pewter, or Ash text directly on white-background footage — ever.
+- No text below 32px in any video composition at any point.
+- No multiple overlay cards active simultaneously.
+- No `class="clip"` inside sub-compositions — it has no effect and creates confusion.
+- No CSS `#id` selectors inside sub-compositions — the inner div has no id.
+- No missing `data-start="0"` on the template inner div — the comp silently fails.
+- No missing `data-width`/`data-height` on the container div — use CSS inset for stacking, data attributes for sizing.
+- No animating `backgroundImage` or gradient stops for ember/glow elements — animate `opacity` only.
+- No `Math.random()` / `Date.now()` inside render loops — use harmonic hashes.
+- No overlay exit mid-sentence — wait for a spoken pause.
+- No CTA shorter than 5 seconds. The viewer needs time to register the information.
+- No hype words in any overlay or caption: revolutionary, cutting edge, disruptive, seamless, unleash, leverage, next-gen, game-changer.
+
+---
+
+## 9 · GSAP Reference
 
 **Easings by purpose:**
 
 | Purpose | Ease | Typical duration |
 | --- | --- | --- |
-| Word reveal | `expo.out` | 0.20-0.35s |
-| Element enter | `power3.out` | 0.3-0.6s |
-| Element exit | `power2.in` | 0.2-0.35s |
-| Amber whip exit | `power3.in` | 0.35-0.45s |
-| Beat-to-beat entry | `power2.out` | 0.5-0.9s |
-| Camera pan | `power2.inOut` | 1.2-2.3s |
-| Linear hold | `none` | 0.4-0.65s |
-| Card settle | `back.out(1.2)` | 0.3-0.5s |
-| Ember settle | `sine.inOut` | 0.8-1.5s |
-| Continuous breathe | `sine.inOut` yoyo | 3-6s, `repeat: -1` |
-| Steel trace | `power2.inOut` | 1.0-2.0s |
-| Copper mark appear | `back.out(1.4)` | 0.25-0.35s |
+| Overlay card entry | `power3.out` | 0.5–0.7s |
+| Stat callout pop | `back.out(1.2)` | 0.35–0.45s |
+| Chapter marker entry | `expo.out` | 0.4–0.5s |
+| Word reveal | `power3.out` | 0.20–0.25s per word |
+| Card exit | `power2.in` | 0.35–0.4s |
+| Stat exit lift | `power2.in` | 0.3–0.35s |
+| Ember underline draw | `power2.out` | 0.25–0.35s |
+| Ember settle | `sine.inOut` | 0.8–1.5s |
+| Void breathe (repeat) | `sine.inOut` yoyo | 3–5s, `repeat: -1` |
+| Full-screen entry | `power3.out` | 0.5–0.9s |
+| Full-screen camera pan | `power2.inOut` | 1.2–2.3s |
+| Amber whip | `power3.in` | 0.35–0.45s |
 
 **Stagger values:**
-- Word reveals: `stagger: 0.28-0.35`
-- Copper marks: `stagger: 0.06-0.10`
-- Particle drift (stagger from random): `each: 0.5-0.8`
-- Caption lines: `0.08-0.12s` explicit delays
+- Word-by-word captions: `0.16–0.18s`
+- Copper mark appear: `0.06–0.08s`
+- Particle drift: `each: 0.5–0.8, from: 'random'`
 
-**Don't use ****`gsap.defaults()`****.** Every tween declares its ease and duration explicitly. Inheritance bugs are harder to find than verbose tweens.
+Never use `gsap.defaults()` — every tween declares its ease and duration explicitly.
 
-**Timeline skeleton:**
+**Timeline skeleton (every sub-composition):**
 
 ```javascript
 (() => {
+  const SLOT = /* data-duration value */;
   const tl = gsap.timeline({ paused: true });
+
   // … tweens …
-  tl.to({}, { duration: SLOT_DURATION }, 0);  // Law #10 anchor
+
+  tl.to({}, { duration: SLOT }, 0);  // Law #10
   window.__timelines['<data-composition-id>'] = tl;
 })();
 ```
 
-Key must match `data-composition-id` exactly.
-
 ---
 
-## 8 · TL;DR
+## 10 · TL;DR
 
-> **One idea per beat, void dominant, serif at authority scale, one ember moment per section, copper marks the structure, steel traces the path — ambient breath in every still frame, amber whip on every cut, hold the CTA in silence, and every timeline fills its slot.**
+> **One overlay at a time, dark cards on white footage, minimum 36px on everything, captions always on, one ember accent per card, hold every card through the spoken moment, exit in silence — and every timeline fills its slot.**
