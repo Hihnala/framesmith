@@ -143,7 +143,10 @@ Sub-composition structure:
 
 ```html
 <template id="my-comp-template">
-  <div data-composition-id="my-comp" data-width="1920" data-height="1080">
+  <div data-composition-id="my-comp"
+       data-start="0"
+       data-duration="10"
+       data-width="1920" data-height="1080">
     <!-- content -->
     <style>
       [data-composition-id="my-comp"] {
@@ -161,7 +164,24 @@ Sub-composition structure:
 </template>
 ```
 
-Load in root: `<div id="el-1" data-composition-id="my-comp" data-composition-src="compositions/my-comp.html" data-start="0" data-duration="10" data-track-index="1"></div>`
+**The template inner div requires both `data-start="0"` and `data-duration`.** Omitting either causes the sub-composition to silently fail — no error, nothing visible.
+
+Load in root: `<div id="el-1" data-composition-id="my-comp" data-composition-src="compositions/my-comp.html" data-start="0" data-duration="10" data-track-index="1" data-width="1920" data-height="1080"></div>`
+
+**`data-width` and `data-height` are required on the container div in `index.html`** — not just on the inner template div. CSS `inset: 0` or `position: absolute; width: 100%` do not substitute; HyperFrames reads the data attributes to size and position the sub-composition frame.
+
+**CSS selectors inside sub-compositions:** use `[data-composition-id="my-comp"] .element` throughout — not `#my-comp .element`. The template inner div has no `id`; `#my-comp` matches nothing. The linter may warn about `composition_self_attribute_selector` and suggest `#id` selectors — ignore this warning for sub-compositions embedded once.
+
+**`class="clip"` has no effect inside sub-compositions.** HyperFrames manages clip visibility only at the root timeline level. Inside a sub-comp, elements with `class="clip"` all render simultaneously. Control visibility with GSAP `autoAlpha` instead:
+
+```css
+[data-composition-id="my-comp"] .overlay { opacity: 0; visibility: hidden; }
+```
+
+```js
+tl.fromTo('.overlay', { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 }, 2.0);
+tl.set('.overlay', { autoAlpha: 0 }, 5.5);
+```
 
 ## Video and Audio
 

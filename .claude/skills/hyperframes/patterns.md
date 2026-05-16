@@ -93,12 +93,16 @@ Use separate elements on the same track, each with its own time range. Slides au
   <audio id="el-4" data-start="0" data-duration="30" data-track-index="2" src="..." />
 
   <!-- Sub-compositions loaded from files -->
+  <!-- data-width, data-height, and data-duration are required on every sub-comp container -->
   <div
     id="el-5"
     data-composition-id="intro-anim"
     data-composition-src="compositions/intro-anim.html"
     data-start="0"
+    data-duration="60"
     data-track-index="3"
+    data-width="1920"
+    data-height="1080"
   ></div>
 
   <div
@@ -106,7 +110,10 @@ Use separate elements on the same track, each with its own time range. Slides au
     data-composition-id="captions"
     data-composition-src="compositions/caption-overlay.html"
     data-start="0"
+    data-duration="60"
     data-track-index="4"
+    data-width="1920"
+    data-height="1080"
   ></div>
 
   <script>
