@@ -1,6 +1,6 @@
 # Framesmith
 
-**HTML-native video production studio powered by **[**HyperFrames**](https://hyperframes.heygen.com)**. Works with any AI coding agent.**
+**HTML-native video production studio powered by [HyperFrames](https://hyperframes.heygen.com). Works with any AI coding agent.**
 
 Write HTML. Render video. No proprietary editors.
 
@@ -11,7 +11,7 @@ Write HTML. Render video. No proprietary editors.
 Framesmith is an AI agent workspace for producing professional videos using HyperFrames — a framework that converts HTML compositions into deterministic MP4s. It ships with:
 
 - **Three-level workflow** — Website-to-Video, Storyboard-first Motion Graphics, and Guided Video with raw footage editing
-- **Full video pipeline** — silence cutting, word-level transcription, retake removal, ElevenLabs Scribe support
+- **Full video pipeline** — silence cutting, word-level transcription, retake removal, audio enhancement, ElevenLabs Scribe support
 - **Gate system** — the agent asks the right questions before doing anything
 - **Hihnala brand system** by default, with a clear guide to swap it for your own
 - **21st.dev integration** — pull UI components from the registry into your compositions
@@ -69,8 +69,9 @@ Full pipeline for talking-head and screen recordings:
 1. Silence cut — `tools/silence-cut.sh`
 2. Word-level transcription — `tools/transcribe-whisper.py` (local) or ElevenLabs Scribe (multilingual)
 3. Retake removal — `tools/cut-retakes.py`
-4. HyperFrames composition with motion overlay and captions
-5. Lint → Studio preview → draft render → final render
+4. Audio enhancement — `tools/process-audio.py`
+5. HyperFrames composition with motion overlay and captions
+6. Lint → Studio preview → draft render → final render
 
 ---
 
