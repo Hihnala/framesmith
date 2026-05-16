@@ -107,6 +107,7 @@ Step 01 · Raw footage → edited video
    silence-cut.sh       → removes silences
    transcribe-whisper.py → word-level transcript
    cut-retakes.py        → removes duplicate takes (last-take rule)
+   process-audio.py      → audio enhancement (loudnorm, compression, optional pad)
 
 Step 02 · Storyboard title card overlays
    Plan motion graphics that overlay on the edited video
@@ -143,6 +144,7 @@ Always invoke the matching skill before writing or modifying compositions.
 | `make-a-video` | `/make-a-video` | Beginner end-to-end flow |
 | `short-form-video` | `/short-form-video` | 9:16 talking-head + motion graphics playbook |
 | `video-pipeline` | `/video-pipeline` | Level 3: silence-cut → transcribe → retake-cut → compose |
+| `process-audio` | `/process-audio` | Two-pass loudnorm + light compression for talking-head audio |
 | `multi-format` | `/multi-format` | Render to YouTube + LinkedIn (+ TikTok if vertical composition exists) |
 | `thumbnail` | `/thumbnail` | Generate brand-consistent YouTube + LinkedIn thumbnails |
 | `21st-dev` | `/21st-dev` | Search and import UI components from 21st.dev |
@@ -177,6 +179,7 @@ npx hyperframes info --json
 python tools/transcribe-whisper.py video-projects/<name>/raw.mp4
 python tools/cut-retakes.py        # edit KEEPS list inside the script first
 bash tools/silence-cut.sh          # edit IN/OUT paths inside the script first
+python tools/process-audio.py --input video-projects/<name>/edit.mp4 --output video-projects/<name>/audio-processed.mp4
 
 # Shell tools (run from inside the project folder)
 bash ../../tools/render-all.sh                                    # render YouTube + LinkedIn (+ TikTok if index-vertical.html exists)

@@ -19,14 +19,17 @@ from pathlib import Path
 
 # ── CONFIGURE THESE ────────────────────────────────────────────────────────────
 
-IN  = Path("video-projects/<your-project>/raw-silence-cut.mp4")
-OUT = Path("video-projects/<your-project>/edit.mp4")
+IN  = Path("video-projects/hihnala-channel-trailer/raw-silence-cut.mp4")
+OUT = Path("video-projects/hihnala-channel-trailer/edit.mp4")
 
 # Keep ranges (start, end) in seconds. Last-take rule — only the final good take
 # per spoken section. Review transcript first, then fill in ranges.
 KEEPS = [
-    # (0.0, 14.36),   # Clip 1: "first sentence"
-    # (14.65, 17.64), # Clip 2: "second sentence"
+    (42.80, 71.80),   # Opening hook (take 3) → "Those are the questions this channel is built around."
+    (88.22, 101.60),  # Bio last take → "...internet, mobile, cloud." (cloud ends 100.74; extend to breath before AI at 101.72)
+    (101.72, 108.60), # "AI is the same pattern just faster..."
+    (111.02, 119.34), # "That's what this channel is for..."
+    (125.08, 125.80), # "Thank you very much." (speech ends ~126.0s; hard trim before chair empties)
 ]
 
 # ── DO NOT EDIT BELOW ──────────────────────────────────────────────────────────

@@ -1,6 +1,6 @@
 # Tools
 
-Framesmith includes six shell and Python tools in the `tools/` directory. They handle the parts of video production that the HyperFrames CLI does not: raw footage editing, multi-platform rendering, and thumbnail export.
+Framesmith includes seven shell and Python tools in the `tools/` directory. They handle the parts of video production that the HyperFrames CLI does not: raw footage editing, multi-platform rendering, and thumbnail export.
 
 All shell scripts should be made executable once:
 
@@ -82,6 +82,63 @@ This number is `data-duration` for your root composition.
 - Pads are not added automatically — bake them into the start and end times in `KEEPS`
 - Uses libx264 with CRF 18 and tight 1s GOP keyframes for accurate HyperFrames seeking
 - Requires FFmpeg on PATH
+
+---
+
+### process-audio.py
+
+Enhances the audio of a talking-head video using a two-pass EBU R128 loudnorm
+chain. Run after `cut-retakes.py`, on the final edited video.
+
+**No additional dependencies.** Requires only ffmpeg, which Framesmith already requires.
+
+### Filter chain
+
+| Order | Filter | Purpose |
+|-------|--------|---------|
+| 1 | High-pass at 80 Hz | Removes clothing rustle, HVAC hum, surface vibration |
+| 2 | Compression (3:1, -18 dBFS) | Evens out conversational speech dynamics |
+| 3 | EBU R128 loudnorm (-16 LUFS) | YouTube-standard loudness, -1 dBTP ceiling |
+| 4 | Limiter (-1 dBTP) | Hard true-peak safety ceiling |
+
+### Usage
+
+```bash
+# Voice only
+python tools/process-audio.py \
+  --input  video-projects/my-project/edited.mp4 \
+  --output video-projects/my-project/audio-processed.mp4
+
+# With ambient pad (recommended)
+python tools/process-audio.py \
+  --input  video-projects/my-project/edited.mp4 \
+  --output video-projects/my-project/audio-processed.mp4 \
+  --pad    assets/ambient-pad.mp3
+
+# Custom pad level
+python tools/process-audio.py \
+  --input      video-projects/my-project/edited.mp4 \
+  --output     video-projects/my-project/audio-processed.mp4 \
+  --pad        assets/ambient-pad.mp3 \
+  --pad-volume -24
+```
+
+### Arguments
+
+| Argument | Required | Default | Description |
+|----------|----------|---------|-------------|
+| `--input` | Yes | — | Input video file (post-edit) |
+| `--output` | Yes | — | Output file with processed audio |
+| `--pad` | No | None | Ambient pad file to mix under voice |
+| `--pad-volume` | No | `-22` | Pad mix level in dB |
+
+### Notes
+
+- The video stream is copied without re-encoding (`-c:v copy`).
+- Designed for mics with built-in ENC (Hollyland Lark M2 etc.). Does not add noise reduction, de-essing, or fine EQ.
+- The pad is looped automatically to match the video length.
+- To change the loudness target (e.g. -23 LUFS for broadcast), edit `TARGET_LUFS` at the top of the script. No other changes needed.
+- Claude Code users: run as `/process-audio`.
 
 ---
 
@@ -236,11 +293,12 @@ raw.mp4
   1. bash tools/silence-cut.sh              → raw-silence-cut.mp4
   2. python tools/transcribe-whisper.py     → .transcript.json + .transcript.txt
   3. python tools/cut-retakes.py            → edit.mp4
-     [Build composition from edit.mp4]
-  4. bash ../../tools/render-all.sh         → youtube.mp4 + linkedin.mp4
-  5. [Build thumbnail.html]
+  4. python tools/process-audio.py          → audio-processed.mp4
+     [Build composition from audio-processed.mp4]
+  5. bash ../../tools/render-all.sh         → youtube.mp4 + linkedin.mp4
+  6. [Build thumbnail.html]
      bash ../../tools/thumbnail-render.sh   → thumbnail-youtube.png + thumbnail-linkedin.png
 ```
 
-Steps 1–3 are run from the workspace root (paths in the scripts reference the project folder).
-Steps 4–5 are run from inside the project folder.
+Steps 1–4 are run from the workspace root (paths in the scripts reference the project folder).
+Steps 5–6 are run from inside the project folder.
