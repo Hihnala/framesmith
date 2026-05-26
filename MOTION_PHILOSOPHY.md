@@ -109,7 +109,9 @@ Within any body section:
 | **Lower third** | 0:30–1:00, once per video | Must exit before first main argument |
 | **Stat callout** | When a number/metric is spoken | One per major point, right or center, never on speaker's face |
 | **Pull quote** | On the most shareable claim in a section | One per section, left-anchored or centered |
-| **Chapter marker** | Between major topics | Brief (2.5–3s), centered, pill-shaped |
+| **Chapter marker** | Between major topics | Brief (2.5–3s), horizontally centered, pill-shaped — always `top: 48px` (top of frame), never vertically centered |
+
+> **Talking-head spatial rule:** The speaker's face occupies the vertical center of the frame. Do not place any overlay card at `top: 50%` or equivalent mid-frame vertical position. Safe zones: top edge (chapter markers), top-left corner (pull quotes), top-right (stat callouts), bottom-left (lower thirds). Horizontal centering is always fine; vertical centering is never safe in talking-head compositions.
 | **Kinetic captions** | Always | Never off. Word-by-word. Bottom-centered. |
 
 ### 2.2 Motion vocabulary for overlays

@@ -1,9 +1,4 @@
 node_modules/
 .env
-video-projects/**/.env
-video-projects/**/renders/
-video-projects/**/*.mp4
-video-projects/**/*.wav
-video-projects/**/*.transcript.json
-video-projects/**/*.transcript.txt
+video-projects/
 .DS_Store

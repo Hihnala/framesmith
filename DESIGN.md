@@ -263,7 +263,7 @@ See `MOTION_PHILOSOPHY.md` for the full Laws, overlay recipes, sub-composition r
 2. **No text below 32px in any video composition.** It cannot be read on standard screens at normal viewing distance.
 3. **No `class="clip"` inside sub-compositions.** It does nothing. Use GSAP `autoAlpha`.
 4. **No multiple overlay cards active simultaneously.** One card at a time.
-5. **No overlay that covers the speaker's face.**
+5. **No overlay that covers the speaker's face.** In talking-head footage the face occupies the vertical center of the frame. Never use `top: 50%`, `margin: auto` with centered vertical position, or any equivalent that places a card at mid-frame height. Safe zones: chapter markers at `top: 48px` (top edge), pull quotes top-left (`top: 88px; left: 72px`), stat callouts top-right (`top: 280–350px; right: 80px`), lower thirds bottom-left (`bottom: 160px+`). When in doubt, position above the eye line or below the chin — never at chest/face height.
 6. **No exit animations competing with spoken content.** Cards exit during natural pauses only.
 7. **No full-screen linear gradients.** H.264 banding. Use `--hihnala-bg` + localized radial ember glow.
 8. **No Source Serif 4 at weight 700.** Always 400.
