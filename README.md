@@ -11,11 +11,11 @@ Write HTML. Render video. No proprietary editors.
 Framesmith is an AI agent workspace for producing professional videos using HyperFrames — a framework that converts HTML compositions into deterministic MP4s. It ships with:
 
 - **Three-level workflow** — Website-to-Video, Storyboard-first Motion Graphics, and Guided Video with raw footage editing
-- **Full video pipeline** — silence cutting, word-level transcription, retake removal, audio enhancement, ElevenLabs Scribe support
+- **Full video pipeline** — silence cutting, word-level transcription, retake removal, eye contact correction, audio enhancement, ElevenLabs Scribe support
 - **Gate system** — the agent asks the right questions before doing anything
 - **Hihnala brand system** by default, with a clear guide to swap it for your own
 - **21st.dev integration** — pull UI components from the registry into your compositions
-- **Sixteen agent skills** covering every stage of production
+- **Seventeen agent skills** covering every stage of production
 
 ---
 
@@ -34,7 +34,9 @@ Framesmith is an AI agent workspace for producing professional videos using Hype
 git clone https://github.com/Hihnala/framesmith
 cd framesmith
 cp .env.example video-projects/.env
-# Add your ElevenLabs API key to video-projects/.env
+# Add your API keys to video-projects/.env:
+#   ELEVENLABS_API_KEY  — transcription and TTS
+#   NVIDIA_API_KEY      — eye contact correction (nvapi-...)
 
 npx skills add heygen-com/hyperframes   # install HyperFrames skills for your agent
 ```
@@ -69,9 +71,10 @@ Full pipeline for talking-head and screen recordings:
 1. Silence cut — `tools/silence-cut.sh`
 2. Word-level transcription — `tools/transcribe-whisper.py` (local) or ElevenLabs Scribe (multilingual)
 3. Retake removal — `tools/cut-retakes.py`
-4. Audio enhancement — `tools/process-audio.py`
-5. HyperFrames composition with motion overlay and captions
-6. Lint → Studio preview → draft render → final render
+4. Eye contact correction — `tools/eye-contact.py`
+5. Audio enhancement — `tools/process-audio.py`
+6. HyperFrames composition with motion overlay and captions
+7. Lint → Studio preview → draft render → final render
 
 ---
 
@@ -108,6 +111,7 @@ npx skills add heygen-com/hyperframes
 | `short-form-video` | 9:16 vertical social video playbook |
 | `website-to-hyperframes` | URL → composition (7-step pipeline) |
 | `video-pipeline` | Level 3 raw footage pipeline with ElevenLabs Scribe |
+| `eye-contact` | NVIDIA Eye Contact NIM — correct gaze toward camera in talking-head footage |
 | `multi-format` | Render to YouTube + LinkedIn + TikTok from one project |
 | `thumbnail` | Generate brand-consistent YouTube + LinkedIn thumbnails |
 | `journal` | Update project journal and workspace production log |

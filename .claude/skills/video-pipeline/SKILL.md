@@ -13,7 +13,8 @@ Full production pipeline for raw footage → finished MP4.
 raw.mp4
   └── Step 1: Silence cut        → raw-silence-cut.mp4
   └── Step 2: Transcribe         → .transcript.json + .transcript.txt
-  └── Step 3: Retake cut         → edit.mp4  (source of truth for composition)
+  └── Step 3: Retake cut         → retakes-removed.mp4
+  └── Step 3.5: Eye contact      → eye-contact.mp4  (optional — NVIDIA Eye Contact NIM)
   └── Step 4: Storyboard overlays → plan scenes and motion graphic beats
   └── Step 5: HyperFrames build  → index.html + compositions/
   └── Step 6: Lint + preview     → Studio at localhost:3002
