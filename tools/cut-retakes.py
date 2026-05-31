@@ -19,17 +19,43 @@ from pathlib import Path
 
 # ── CONFIGURE THESE ────────────────────────────────────────────────────────────
 
-IN  = Path("video-projects/hihnala-channel-trailer/raw-silence-cut.mp4")
-OUT = Path("video-projects/hihnala-channel-trailer/edit.mp4")
+IN  = Path("video-projects/week-1/raw-silence-cut.mp4")
+OUT = Path("video-projects/week-1/retakes-removed.mp4")
 
-# Keep ranges (start, end) in seconds. Last-take rule — only the final good take
-# per spoken section. Review transcript first, then fill in ranges.
+# Keep ranges (start, end) in seconds. Last-take rule — only the final good take.
+# Source: raw-silence-cut.transcript.txt  |  ~5m 33s final edit
 KEEPS = [
-    (42.80, 71.80),   # Opening hook (take 3) → "Those are the questions this channel is built around."
-    (88.22, 101.60),  # Bio last take → "...internet, mobile, cloud." (cloud ends 100.74; extend to breath before AI at 101.72)
-    (101.72, 108.60), # "AI is the same pattern just faster..."
-    (111.02, 119.34), # "That's what this channel is for..."
-    (125.08, 125.80), # "Thank you very much." (speech ends ~126.0s; hard trim before chair empties)
+    # ── Opening + Core Problem ────────────────────────────────────────────────
+    (0.00, 41.22),    # "Most AI projects don't fail..." → "...a consultant is brought in."
+    (46.14, 68.86),   # retry: "Then something in the middle of that work." → "...moves on to something else."
+                      #   cut: 41.84–45.78 (fumble: "Work begins then something in the middle of the work of that")
+    # ── Transition + Mistake 1 ────────────────────────────────────────────────
+    (78.50, 104.92),  # "This pattern almost always traces back..." → "Do they require account access?"
+                      #   cut: 69.76–77.xx (explicit "cuts." then restarted)
+    (109.44, 122.12), # clean take: "Are they complaints that require human response?..." → "...handles the work well."
+                      #   cut: 105.50–108.96 ("that the require human? Cut.")
+    (128.68, 142.60), # clean take: "And an AI system that handles customer inquiries badly..." → "Define the problem first"
+                      #   cut: 122.68–127.86 ("customer inquiries bad cut.")
+    (146.96, 162.62), # clean take: "Not we want to save time on customer service..." → "...not ready to build anything yet."
+                      #   cut: 142.94–146.70 (fumble: "Not we want to find the problem first in specific terms.")
+    # ── Mistake 2 ─────────────────────────────────────────────────────────────
+    (162.62, 222.20), # "The AI doesn't fix program processes..." → "You can't automate that."
+    (234.18, 253.42), # clean take: "The work before automation is to standardize..." → "...you're not right."
+                      #   cut: 222.98–233.84 ("handle it, cut." + repeated "You can't automate that.")
+    # ── Mistake 3 ─────────────────────────────────────────────────────────────
+    (259.40, 290.08), # "A system gets built, it works..." → "Eventually someone notices the outputs are wrong."
+                      #   cut: 253.44–258.94 (fumbled intro: "One kills more process than...")
+    (296.54, 315.80), # clean take: "By that point, months of bad data or bad customer interactions..."
+                      #             → "Every AI system needs an owner...someone who understands what it's doing."
+                      #   cut: 290.76–295.46 ("months of bad data and cut.")
+    (322.18, 325.16), # "and what needs to change when the business changes."
+                      #   cut: 316.24–322.17 (repeated "not necessarily a technical person...what it's doing")
+    (333.12, 351.60), # "If you can't name the person..." → "...were already failing before"
+                      #   cut: 325.76–332.82 (fumble: "Someone who cuts someone who can tell..." — no clean retake, skipped)
+    # ── Why This Matters + Close ──────────────────────────────────────────────
+    (357.20, 362.62), # clean take: "...were already failing before implementation started."
+                      #   cut: 351.60–356.94 (speech error: "before implemented")
+    (363.04, 407.78), # "The money spent on the technology wasn't a loss." → "That's where you start."
 ]
 
 # ── DO NOT EDIT BELOW ──────────────────────────────────────────────────────────

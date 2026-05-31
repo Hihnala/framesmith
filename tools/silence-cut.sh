@@ -19,55 +19,41 @@
 
 set -euo pipefail
 
-IN="video-projects/channel-trailer/raw.mov"
-OUT="video-projects/channel-trailer/raw-silence-cut.mp4"
+IN="/Users/markku/Documents/Hihnala/YouTube/Raw videos/A001_05280944_C006.mov"
+OUT="video-projects/week-1/raw-silence-cut.mp4"
 TMP="${OUT%.mp4}_tmp.mp4"
 
-# Silences detected at -32dB:d=0.25 — 22 silences, 20 keep ranges
-# Original: 60.1s → output: ~46.3s (saves ~13.8s — pre-roll, inter-sentence gaps, 3.4s tail)
+# week-1 — A001_05280944_C006.mov
+# Silences detected at -32dB:d=0.25
+# 10 major gaps cut (6–8s each: pre-roll, section breaks, retake pauses, end tail)
+# Original: 494.8s (8.25 min) → output: ~407.8s (6.8 min) — saves ~87s
 
 ffmpeg -hide_banner -y -i "$IN" -filter_complex "\
-[0:v]trim=2.707:6.812,setpts=PTS-STARTPTS[v0];\
-[0:a]atrim=2.707:6.812,asetpts=PTS-STARTPTS[a0];\
-[0:v]trim=7.155:10.768,setpts=PTS-STARTPTS[v1];\
-[0:a]atrim=7.155:10.768,asetpts=PTS-STARTPTS[a1];\
-[0:v]trim=11.034:13.616,setpts=PTS-STARTPTS[v2];\
-[0:a]atrim=11.034:13.616,asetpts=PTS-STARTPTS[a2];\
-[0:v]trim=14.042:15.185,setpts=PTS-STARTPTS[v3];\
-[0:a]atrim=14.042:15.185,asetpts=PTS-STARTPTS[a3];\
-[0:v]trim=15.568:19.572,setpts=PTS-STARTPTS[v4];\
-[0:a]atrim=15.568:19.572,asetpts=PTS-STARTPTS[a4];\
-[0:v]trim=19.902:20.809,setpts=PTS-STARTPTS[v5];\
-[0:a]atrim=19.902:20.809,asetpts=PTS-STARTPTS[a5];\
-[0:v]trim=21.199:22.837,setpts=PTS-STARTPTS[v6];\
-[0:a]atrim=21.199:22.837,asetpts=PTS-STARTPTS[a6];\
-[0:v]trim=23.091:24.136,setpts=PTS-STARTPTS[v7];\
-[0:a]atrim=23.091:24.136,asetpts=PTS-STARTPTS[a7];\
-[0:v]trim=24.870:27.267,setpts=PTS-STARTPTS[v8];\
-[0:a]atrim=24.870:27.267,asetpts=PTS-STARTPTS[a8];\
-[0:v]trim=27.659:28.994,setpts=PTS-STARTPTS[v9];\
-[0:a]atrim=27.659:28.994,asetpts=PTS-STARTPTS[a9];\
-[0:v]trim=29.120:32.486,setpts=PTS-STARTPTS[v10];\
-[0:a]atrim=29.120:32.486,asetpts=PTS-STARTPTS[a10];\
-[0:v]trim=33.088:36.342,setpts=PTS-STARTPTS[v11];\
-[0:a]atrim=33.088:36.342,asetpts=PTS-STARTPTS[a11];\
-[0:v]trim=36.647:37.988,setpts=PTS-STARTPTS[v12];\
-[0:a]atrim=36.647:37.988,asetpts=PTS-STARTPTS[a12];\
-[0:v]trim=38.455:40.450,setpts=PTS-STARTPTS[v13];\
-[0:a]atrim=38.455:40.450,asetpts=PTS-STARTPTS[a13];\
-[0:v]trim=40.750:42.948,setpts=PTS-STARTPTS[v14];\
-[0:a]atrim=40.750:42.948,asetpts=PTS-STARTPTS[a14];\
-[0:v]trim=43.254:46.281,setpts=PTS-STARTPTS[v15];\
-[0:a]atrim=43.254:46.281,asetpts=PTS-STARTPTS[a15];\
-[0:v]trim=46.390:47.844,setpts=PTS-STARTPTS[v16];\
-[0:a]atrim=46.390:47.844,asetpts=PTS-STARTPTS[a16];\
-[0:v]trim=48.367:49.929,setpts=PTS-STARTPTS[v17];\
-[0:a]atrim=48.367:49.929,asetpts=PTS-STARTPTS[a17];\
-[0:v]trim=50.468:53.682,setpts=PTS-STARTPTS[v18];\
-[0:a]atrim=50.468:53.682,asetpts=PTS-STARTPTS[a18];\
-[0:v]trim=53.871:55.976,setpts=PTS-STARTPTS[v19];\
-[0:a]atrim=53.871:55.976,asetpts=PTS-STARTPTS[a19];\
-[v0][a0][v1][a1][v2][a2][v3][a3][v4][a4][v5][a5][v6][a6][v7][a7][v8][a8][v9][a9][v10][a10][v11][a11][v12][a12][v13][a13][v14][a14][v15][a15][v16][a16][v17][a17][v18][a18][v19][a19]concat=n=20:v=1:a=1[v][a]" \
+[0:v]trim=4.298:24.628,setpts=PTS-STARTPTS[v0];\
+[0:a]atrim=4.298:24.628,asetpts=PTS-STARTPTS[a0];\
+[0:v]trim=31.710:95.587,setpts=PTS-STARTPTS[v1];\
+[0:a]atrim=31.710:95.587,asetpts=PTS-STARTPTS[a1];\
+[0:v]trim=103.831:164.166,setpts=PTS-STARTPTS[v2];\
+[0:a]atrim=103.831:164.166,asetpts=PTS-STARTPTS[a2];\
+[0:v]trim=172.486:190.565,setpts=PTS-STARTPTS[v3];\
+[0:a]atrim=172.486:190.565,asetpts=PTS-STARTPTS[a3];\
+[0:v]trim=197.751:288.559,setpts=PTS-STARTPTS[v4];\
+[0:a]atrim=197.751:288.559,asetpts=PTS-STARTPTS[a4];\
+[0:v]trim=296.563:359.669,setpts=PTS-STARTPTS[v5];\
+[0:a]atrim=296.563:359.669,asetpts=PTS-STARTPTS[a5];\
+[0:v]trim=366.253:387.433,setpts=PTS-STARTPTS[v6];\
+[0:a]atrim=366.253:387.433,asetpts=PTS-STARTPTS[a6];\
+[0:v]trim=395.348:414.828,setpts=PTS-STARTPTS[v7];\
+[0:a]atrim=395.348:414.828,asetpts=PTS-STARTPTS[a7];\
+[0:v]trim=420.531:448.056,setpts=PTS-STARTPTS[v8];\
+[0:a]atrim=420.531:448.056,asetpts=PTS-STARTPTS[a8];\
+[0:v]trim=456.908:471.828,setpts=PTS-STARTPTS[v9];\
+[0:a]atrim=456.908:471.828,asetpts=PTS-STARTPTS[a9];\
+[0:v]trim=476.809:481.778,setpts=PTS-STARTPTS[v10];\
+[0:a]atrim=476.809:481.778,asetpts=PTS-STARTPTS[a10];\
+[0:v]trim=486.848:490.028,setpts=PTS-STARTPTS[v11];\
+[0:a]atrim=486.848:490.028,asetpts=PTS-STARTPTS[a11];\
+[v0][a0][v1][a1][v2][a2][v3][a3][v4][a4][v5][a5][v6][a6][v7][a7][v8][a8][v9][a9][v10][a10][v11][a11]concat=n=12:v=1:a=1[v][a]" \
   -map "[v]" -map "[a]" \
   -c:v libx264 -preset fast -crf 18 -r 30 -g 30 -keyint_min 30 \
   -force_key_frames "expr:gte(t,n_forced*1)" \

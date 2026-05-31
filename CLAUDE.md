@@ -107,7 +107,6 @@ Step 01 · Raw footage → edited video
    silence-cut.sh       → removes silences
    transcribe-whisper.py → word-level transcript
    cut-retakes.py        → removes duplicate takes (last-take rule)
-   eye-contact.py        → eye contact correction (NVIDIA Eye Contact NIM)
    process-audio.py      → audio enhancement (loudnorm, compression, optional pad)
 
 Step 02 · Storyboard title card overlays
@@ -146,7 +145,6 @@ Always invoke the matching skill before writing or modifying compositions.
 | `short-form-video` | `/short-form-video` | 9:16 talking-head + motion graphics playbook |
 | `video-pipeline` | `/video-pipeline` | Level 3: silence-cut → transcribe → retake-cut → compose |
 | `process-audio` | `/process-audio` | Two-pass loudnorm + light compression for talking-head audio |
-| `eye-contact` | `/eye-contact` | NVIDIA Eye Contact NIM — correct gaze toward camera in talking-head footage |
 | `multi-format` | `/multi-format` | Render to YouTube + LinkedIn (+ TikTok if vertical composition exists) |
 | `thumbnail` | `/thumbnail` | Generate brand-consistent YouTube + LinkedIn thumbnails |
 | `21st-dev` | `/21st-dev` | Search and import UI components from 21st.dev |
@@ -181,8 +179,7 @@ npx hyperframes info --json
 python tools/transcribe-whisper.py video-projects/<name>/raw.mp4
 python tools/cut-retakes.py        # edit KEEPS list inside the script first
 bash tools/silence-cut.sh          # edit IN/OUT paths inside the script first
-python tools/eye-contact.py --input video-projects/<name>/retakes-removed.mp4 --output video-projects/<name>/eye-contact.mp4
-python tools/process-audio.py --input video-projects/<name>/eye-contact.mp4 --output video-projects/<name>/audio-processed.mp4
+python tools/process-audio.py --input video-projects/<name>/retakes-removed.mp4 --output video-projects/<name>/audio-processed.mp4
 
 # Shell tools (run from inside the project folder)
 bash ../../tools/render-all.sh                                    # render YouTube + LinkedIn (+ TikTok if index-vertical.html exists)
@@ -213,7 +210,6 @@ framesmith/
 ├── tools/                 ← video pipeline tools
 │   ├── transcribe-whisper.py
 │   ├── cut-retakes.py
-│   ├── eye-contact.py
 │   ├── silence-cut.sh
 │   ├── render-all.sh
 │   ├── extract-frame.sh
