@@ -19,13 +19,22 @@ YouTube gets `--quality high` — upload the best source, let YouTube compress. 
 
 ## Usage
 
-Run from inside the project folder:
+Run from inside the project folder, passing the platform(s) chosen in Gate 3:
 
 ```bash
+# Single platform
+bash ../../tools/render-all.sh --platform youtube
+bash ../../tools/render-all.sh --platform linkedin
+
+# Multiple platforms
+bash ../../tools/render-all.sh --platform youtube --platform linkedin
+bash ../../tools/render-all.sh --platform youtube --platform tiktok
+
+# All platforms (no flag — fallback only, not for normal use)
 bash ../../tools/render-all.sh
 ```
 
-The script auto-detects the project name from the folder, timestamps the session, and renders all configured platforms sequentially.
+The script auto-detects the project name from the folder and renders only the requested platforms.
 
 ## Adding the vertical format (TikTok/Reels)
 

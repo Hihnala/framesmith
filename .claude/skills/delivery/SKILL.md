@@ -52,8 +52,8 @@ Non-critical items (`[!]` without `*`) produce a warning but do not block.
 | `npx hyperframes lint` — zero errors | * | Run lint, confirm exit code 0 |
 | Studio preview reviewed (Gate 1) | * | Confirmed in `JOURNAL.md` |
 | Draft render reviewed (Gate 2) | * | Confirmed in `JOURNAL.md` |
-| YouTube and LinkedIn renders produced | * | `renders/<project>-youtube.mp4` and `renders/<project>-linkedin.mp4` exist |
-| Render durations match (within 0.1s) | * | `render-all.sh` duration check passed |
+| Renders produced for chosen platform(s) | * | Check which platform(s) were selected in Gate 3; verify `renders/<project>-<platform>.mp4` exists for each |
+| Render durations match (within 0.1s) | * | Only applies when both YouTube and LinkedIn were rendered; `render-all.sh` duration check passed |
 | No `Math.random()` or `Date.now()` in compositions | * | Search all HTML files |
 | No render-time network fetches | * | Search all HTML files for fetch(), XMLHttpRequest, `<script src="http` |
 | All GSAP timelines end with no-op duration anchor | — | Check each composition's timeline registration |
@@ -62,8 +62,7 @@ Non-critical items (`[!]` without `*`) produce a warning but do not block.
 
 | Item | Critical | How to verify |
 |---|---|---|
-| YouTube thumbnail ready (`renders/thumbnail-youtube-1280x720.png`) | * | File exists, open and inspect |
-| LinkedIn thumbnail ready (`renders/thumbnail-linkedin-1200x627.png`) | * | File exists, open and inspect |
+| Thumbnail ready for chosen platform(s) | * | Check which platform(s) were chosen; verify `renders/thumbnail-<platform>-<size>.png` exists for each |
 | Thumbnail text readable at small sizes (~168px wide) | * | Visually verify — zoom out the PNG to thumbnail size |
 | Face (if present) is not clipped by gradient mask | — | Inspect thumbnail PNG |
 | `JOURNAL.md` updated with this session | — | Check last entry date |
@@ -79,10 +78,9 @@ After running all checks, create `DELIVERY.md` in the project folder:
 # Delivery Sign-off — <project-name>
 
 **Date:** YYYY-MM-DD
-**Platform:** YouTube / LinkedIn / Both
+**Platform:** [list only the platform(s) chosen in Gate 3]
 **Renders:**
-- `renders/<project>-youtube.mp4` — Xs
-- `renders/<project>-linkedin.mp4` — Xs
+- `renders/<project>-<platform>.mp4` — Xs  (one line per rendered platform)
 
 ## Content
 - [x] Hook lands within first 3 seconds
@@ -105,14 +103,13 @@ After running all checks, create `DELIVERY.md` in the project folder:
 - [x] lint — zero errors
 - [x] Studio preview reviewed
 - [x] Draft render reviewed
-- [x] YouTube + LinkedIn renders produced
-- [x] Durations match
+- [x] Renders produced for chosen platform(s)
+- [x] Durations match (if multiple 16:9 platforms rendered)
 - [x] No Math.random() / Date.now()
 - [x] No render-time network fetches
 
 ## Platform
-- [x] YouTube thumbnail (1280×720)
-- [x] LinkedIn thumbnail (1200×627)
+- [x] Thumbnail ready for chosen platform(s)
 - [x] Thumbnail readable at small sizes
 - [x] JOURNAL.md updated
 

@@ -20,7 +20,7 @@ Two modes — use both, in order:
 2. **Sub-text** (optional) — supporting line, ≤8 words
 3. **Face/portrait** — is there a photo of Markku to include? (file path if yes)
 4. **Accent element** — any specific visual (chart, icon, number callout)?
-5. **Platform priority** — YouTube first (1280×720), LinkedIn second (1200×627)?
+5. **Platform(s)** — Which platform(s) was this video made for? (Check Gate 3; only render thumbnails for those platforms.)
 
 ### Build process
 
@@ -74,16 +74,17 @@ Create `thumbnail.html` in the project root (`video-projects/<name>/thumbnail.ht
 After `thumbnail.html` is built and linted:
 
 ```bash
-bash ../../tools/thumbnail-render.sh
+bash ../../tools/thumbnail-render.sh --platform youtube
+bash ../../tools/thumbnail-render.sh --platform linkedin
+bash ../../tools/thumbnail-render.sh --platform youtube --platform linkedin
 ```
 
-This script:
+Pass `--platform` for each platform chosen in Gate 3. The script:
 1. Renders `thumbnail.html` as a 1s MP4
-2. Extracts frame at t=0.5s as PNG
-3. Scales to LinkedIn dimensions
-4. Reports output paths
+2. Extracts frame at t=0.5s
+3. Outputs only the PNG(s) for the requested platform(s)
 
-Outputs:
+Possible outputs:
 - `renders/thumbnail-youtube-1280x720.png`
 - `renders/thumbnail-linkedin-1200x627.png`
 
@@ -119,17 +120,13 @@ Use this to:
 
 ## After thumbnails are generated
 
-Before uploading:
+Before uploading, open each thumbnail PNG that was generated (only for the chosen platform(s)) and verify:
+- Text is readable at small sizes (YouTube shows thumbnails at ~168px wide in search)
+- Face (if present) is not clipped by the gradient mask
+- Ember accent reads clearly — not too subtle, not too dominant
+- Logo is visible but not competing with the main text
 
-1. Open `renders/thumbnail-youtube-1280x720.png` and verify:
-   - Text is readable at small sizes (YouTube shows thumbnails at ~168px wide in search)
-   - Face (if present) is not clipped by the gradient mask
-   - Ember accent reads clearly — not too subtle, not too dominant
-   - Logo is visible but not competing with the main text
-
-2. Open `renders/thumbnail-linkedin-1200x627.png` and verify the same
-
-3. If anything needs adjustment: edit `thumbnail.html`, re-run `thumbnail-render.sh`
+If anything needs adjustment: edit `thumbnail.html`, re-run `thumbnail-render.sh --platform <platform>`
 
 ---
 

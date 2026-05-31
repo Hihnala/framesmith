@@ -182,7 +182,9 @@ bash tools/silence-cut.sh          # edit IN/OUT paths inside the script first
 python tools/process-audio.py --input video-projects/<name>/retakes-removed.mp4 --output video-projects/<name>/audio-processed.mp4
 
 # Shell tools (run from inside the project folder)
-bash ../../tools/render-all.sh                                    # render YouTube + LinkedIn (+ TikTok if index-vertical.html exists)
+bash ../../tools/render-all.sh --platform youtube                 # render for the platform chosen in Gate 3
+bash ../../tools/render-all.sh --platform linkedin               # (pass --platform for each platform if multiple)
+bash ../../tools/render-all.sh --platform youtube --platform linkedin
 bash ../../tools/extract-frame.sh renders/<project>.mp4 12.5     # extract a single frame at timestamp
 bash ../../tools/thumbnail-render.sh                              # render thumbnail.html → YouTube + LinkedIn PNGs
 ```

@@ -107,11 +107,11 @@ Within any body section:
 | Type | When it fires | Key constraint |
 | --- | --- | --- |
 | **Lower third** | 0:30–1:00, once per video | Must exit before first main argument |
-| **Stat callout** | When a number/metric is spoken | One per major point, right or center, never on speaker's face |
-| **Pull quote** | On the most shareable claim in a section | One per section, left-anchored or centered |
-| **Chapter marker** | Between major topics | Brief (2.5–3s), horizontally centered, pill-shaped — always `top: 48px` (top of frame), never vertically centered |
+| **Stat callout** | When a number/metric is spoken | One per major point, right strip only (`right: 80px`) — never center |
+| **Pull quote** | On the most shareable claim in a section | One per section, left strip only (`left: 80px`, max-width ≤ 560px) — never centered |
+| **Chapter marker** | Between major topics | Brief (2.5–3s), pill-shaped — pin to top-left (`top: 48px, left: 80px`) or top-right (`top: 48px, right: 80px`) — never horizontally centered |
 
-> **Talking-head spatial rule:** The speaker's face occupies the vertical center of the frame. Do not place any overlay card at `top: 50%` or equivalent mid-frame vertical position. Safe zones: top edge (chapter markers), top-left corner (pull quotes), top-right (stat callouts), bottom-left (lower thirds). Horizontal centering is always fine; vertical centering is never safe in talking-head compositions.
+> **Talking-head spatial rule:** The speaker's face occupies the horizontal and vertical center of the frame. No overlay card may appear in the center column — neither horizontally centered nor placed anywhere near `left: 50%`. Safe zones: left strip (pull quotes, lower thirds) and right strip (stat callouts). Chapter markers go top-left or top-right. Captions go bottom-center. Nothing else goes in the middle.
 | **Kinetic captions** | Always | Never off. Word-by-word. Bottom-centered. |
 
 ### 2.2 Motion vocabulary for overlays

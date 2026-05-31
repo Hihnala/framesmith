@@ -186,17 +186,15 @@ Scrub the draft. Verify:
 
 ## Step 8: Final render
 
-After draft is approved:
+After draft is approved, render for the platform(s) chosen in Gate 3:
 
 ```bash
-npx hyperframes render --quality standard --output renders/final.mp4
+bash ../../tools/render-all.sh --platform youtube
+bash ../../tools/render-all.sh --platform linkedin
+bash ../../tools/render-all.sh --platform youtube --platform linkedin
 ```
 
-For delivery quality:
-
-```bash
-npx hyperframes render --quality high --fps 30 --output renders/final-hq.mp4
-```
+Pass `--platform` once per platform. The script uses the correct quality setting per platform automatically (high for YouTube, standard for LinkedIn).
 
 ---
 
